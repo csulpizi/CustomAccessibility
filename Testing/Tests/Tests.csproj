@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\CustomAccessiblity\CustomAccessiblity.csproj" OutputItemType="Analyzer" />
+    <ProjectReference Include="..\ExternalDefinitions\ExternalDefinitions.csproj" />
+    <PackageReference Include="MSTest" Version="4.0.1" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Analyzer.Testing" Version="1.1.4" />
+    <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>.NETFramework,Version=v4.6.2</TargetFramework>
+    <LangVersion>12</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Version>1</Version>
+    <RootNamespace>Testing</RootNamespace>
+  </PropertyGroup>
+
+</Project>

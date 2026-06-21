@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\CustomAccessiblity\CustomAccessiblity.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>.NETFramework,Version=v4.6.2</TargetFramework>
+    <LangVersion>12</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Version>1</Version>
+    <RootNamespace>Testing.Definitions.External</RootNamespace>
+  </PropertyGroup>
+
+</Project>

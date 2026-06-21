@@ -1,0 +1,29 @@
+[*.cs]
+# CS0414
+dotnet_diagnostic.CS0414.severity = none
+
+# CS0649
+dotnet_diagnostic.CS0649.severity = none
+
+# CS9113: Parameter is unread.
+dotnet_diagnostic.CS9113.severity = none
+
+
+
+# IDE0040: Add accessibility modifiers
+dotnet_diagnostic.IDE0040.severity = none
+
+# IDE0051: Remove unused private member
+dotnet_diagnostic.IDE0051.severity = none
+
+# IDE0052: Remove unread private member
+dotnet_diagnostic.IDE0052.severity = none
+
+# IDE0060: Remove unused parameter
+dotnet_diagnostic.IDE0060.severity = none
+
+# IDE0079: Remove unnecessary suppression => ie, we do not see the expected diagnostic return value
+dotnet_diagnostic.IDE0079.severity = error
+
+# IDE0251: Make member 'readonly'
+csharp_style_prefer_readonly_struct_member = false
