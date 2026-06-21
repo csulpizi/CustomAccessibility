@@ -11,11 +11,7 @@ namespace CustomAccessiblity;
 public class AttributeAnalyzer : DiagnosticAnalyzer
 {
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics =>
-        [
-            InvalidAttributeUsage.Rule,
-            MultipleAttributes.Rule, //FIXMEE~!!!!!!!];
-            RestrictedAccess.Rule
-        ];
+        [InvalidAttributeUsage.Rule, MultipleAttributes.Rule];
 
     public override void Initialize(AnalysisContext context)
     {
@@ -54,6 +50,7 @@ public class AttributeAnalyzer : DiagnosticAnalyzer
         }
     }
 
+    //FIXME: FACTOR OUT!!!!!@
     static void ValidateMemberDeclaration(
         SyntaxNodeAnalysisContext ctx,
         MemberDeclarationSyntax node,

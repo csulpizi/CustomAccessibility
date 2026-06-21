@@ -40,11 +40,11 @@ public class TestWildcards
     )]
     public void TestRegex(string input, string[] samples, bool[] expected)
     {
-        var regex = CustomAccessiblity.Util.GetRegex(input);
+        var regex = CustomAccessiblity.Util.CoerceWildCardStringToRegex(input);
         Assert.IsGreaterThan(0, samples.Length);
         for (int i = 0; i < samples.Length; i++)
         {
-            Assert.AreEqual(CustomAccessiblity.Util.CheckRegex(samples[i], regex), expected[i]);
+            Assert.AreEqual(regex.IsMatch(samples[i]), expected[i]);
         }
     }
 }

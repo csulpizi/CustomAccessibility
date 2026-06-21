@@ -1,71 +1,13 @@
 using System.Text.RegularExpressions;
 using CustomAccessiblity.Attributes;
-using CustomAccessiblity.Rules;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace CustomAccessiblity;
 
 [AccessibleByAll]
 static class Util
 {
-    internal static void Validate(
-        SyntaxNodeAnalysisContext ctx,
-        ISymbol? symbol,
-        INamedTypeSymbol? declaringSymbol,
-        Func<Location> getLocation
-    )
-    {
-        if (symbol is null)
-            return;
-
-        if (symbol.DeclaredAccessibility != Accessibility.Internal)
-            return;
-
-        var isPrivateAccess =
-            symbol.ContainingType is not null
-            && SymbolEqualityComparer.Default.Equals(symbol.ContainingType, declaringSymbol);
-
-        // Always allow private access
-        if (isPrivateAccess)
-            return;
-
-        var isExternalAccess = IsExternalAccess(declaringSymbol, symbol);
-        var accessibilityType = GetAccessibilityType(symbol);
-
-        if (isExternalAccess && accessibilityType == AccessibilityType.InternalAccessOnly)
-        {
-            ctx.ReportDiagnostic(
-                Diagnostic.Create(RestrictedAccess.Create(symbol.Name), getLocation())
-            );
-            return;
-        }
-        if (!isExternalAccess && accessibilityType == AccessibilityType.ExternalAccessOnly)
-        {
-            ctx.ReportDiagnostic(
-                Diagnostic.Create(RestrictedAccess.Create(symbol.Name), getLocation())
-            );
-            return;
-        }
-
-        var classes = GetClassRegexes(symbol);
-
-        if (classes.Any() && !classes.Any(regex => CheckClassRegex(declaringSymbol, regex)))
-        {
-            ctx.ReportDiagnostic(
-                Diagnostic.Create(RestrictedAccess.Create(symbol.Name), getLocation())
-            );
-            return;
-        }
-
-        if (isExternalAccess && accessibilityType == AccessibilityType.Default)
-        {
-            ctx.ReportDiagnostic(Diagnostic.Create(ImplicitlyRestrictedAccess.Rule, getLocation()));
-            return;
-        }
-    }
-
-    static AccessibilityType GetAccessibilityType(ISymbol symbol)
+    internal static AccessibilityType GetAccessibilityType(ISymbol symbol)
     {
         var xs = symbol.GetAttributes();
         if (xs.Any(x => nameof(InternalAccessOnly) == x.AttributeClass?.Name))
@@ -77,22 +19,14 @@ static class Util
         return AccessibilityType.Default;
     }
 
-    static string ConstructorArgFromAttributeData(AttributeData data)
-    {
-        var s =
-            data.ConstructorArguments[0].Value ?? throw new Exception("This should never happen!");
-        return (string)s;
-    }
-
-    static IEnumerable<Regex> GetClassRegexes(ISymbol symbol)
+    internal static IEnumerable<Regex> GetClassRegexes(ISymbol symbol)
     {
         return symbol
             .GetAttributes()
             .Where(x => nameof(OnlyAccessibleBy) == x.AttributeClass?.Name)
-            .Select(x => GetRegex(ConstructorArgFromAttributeData(x)));
+            .Select(CoerceAttributeToRegex);
     }
 
-    [ExternalAccessOnly]
     internal static bool IsExternalAccess(INamedTypeSymbol? declaringClassSymbol, ISymbol subject)
     {
         return !SymbolEqualityComparer.Default.Equals(
@@ -101,15 +35,8 @@ static class Util
         );
     }
 
-    static bool CheckClassRegex(INamedTypeSymbol? declaringSymbol, Regex regex) =>
-        CheckRegex(declaringSymbol?.Name, regex)
-        || CheckRegex(FullyQualifiedClassName(declaringSymbol), regex);
-
-    static string? FullyQualifiedClassName(INamedTypeSymbol? declaringSymbol)
+    internal static string FullyQualifiedClassName(INamedTypeSymbol declaringSymbol)
     {
-        if (declaringSymbol is null)
-            return null;
-
         var s = declaringSymbol.Name;
 
         var parent = declaringSymbol.ContainingType;
@@ -128,16 +55,17 @@ static class Util
         return s;
     }
 
-    [ExternalAccessOnly]
-    internal static bool CheckRegex(string? name, Regex regex)
+    static Regex CoerceAttributeToRegex(AttributeData attribute)
     {
-        if (name is null)
-            return false;
-        return regex.IsMatch(name);
+        var s = (string)(
+            attribute.ConstructorArguments[0].Value ?? throw new Exception("Should never happen")
+        );
+        return CoerceWildCardStringToRegex(s);
     }
 
+    // Allow external for unit testing
     [ExternalAccessOnly]
-    internal static Regex GetRegex(string s)
+    internal static Regex CoerceWildCardStringToRegex(string s)
     {
         s = "^" + s + "$";
         s = s.Replace(".", "\\.").Replace("**", "[^\\s]{0,}").Replace("*", "[^.\\s]{0,}");

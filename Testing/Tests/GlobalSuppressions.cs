@@ -5,4 +5,10 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-[assembly: SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>", Scope = "member", Target = "~M:Testing.Tests.ClassDeclaration1.#ctor(Testing.Tests.RestrictedMember)")]
+[assembly: SuppressMessage(
+    "Style",
+    "IDE0060:Remove unused parameter",
+    Justification = "<Pending>",
+    Scope = "member",
+    Target = "~M:Testing.Tests.ClassDeclaration1.#ctor(Testing.Tests.RestrictedMember)"
+)]

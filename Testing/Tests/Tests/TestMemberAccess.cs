@@ -31,6 +31,7 @@ static class RestrictedStaticClassWithMembers
 {
     internal static int A;
     internal static int B => 0;
+
     internal static void Foo() { }
 }
 
