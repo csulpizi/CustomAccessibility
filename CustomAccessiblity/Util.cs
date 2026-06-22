@@ -19,6 +19,12 @@ static class Util
         return AccessibilityType.Default;
     }
 
+    internal static bool IsDeclaredInternal(ISymbol symbol)
+    {
+        return symbol.DeclaredAccessibility == Accessibility.Internal
+            || symbol.DeclaredAccessibility == Accessibility.ProtectedOrInternal;
+    }
+
     internal static IEnumerable<Regex> GetClassRegexes(ISymbol symbol)
     {
         return symbol
@@ -27,11 +33,11 @@ static class Util
             .Select(CoerceAttributeToRegex);
     }
 
-    internal static bool IsExternalAccess(INamedTypeSymbol? declaringClassSymbol, ISymbol subject)
+    internal static bool IsExternalAccess(INamedTypeSymbol declaringClassSymbol, ISymbol subject)
     {
         return !SymbolEqualityComparer.Default.Equals(
-            subject.ContainingModule,
-            declaringClassSymbol?.ContainingModule
+            declaringClassSymbol.ContainingModule,
+            subject.OriginalDefinition.ContainingModule
         );
     }
 
@@ -64,11 +70,33 @@ static class Util
     }
 
     // Allow external for unit testing
-    [ExternalAccessOnly]
+    [AccessibleByAll]
     internal static Regex CoerceWildCardStringToRegex(string s)
     {
         s = "^" + s + "$";
         s = s.Replace(".", "\\.").Replace("**", "[^\\s]{0,}").Replace("*", "[^.\\s]{0,}");
         return new(s);
+    }
+
+    internal static bool IsPrivateOrProtectedAccess(ISymbol symbol, ITypeSymbol declaringSymbol)
+    {
+        var ogDeclarer = symbol.ContainingType;
+        if (ogDeclarer is null)
+            return false;
+
+        // Is symbol declared in this class?
+        if (SymbolEqualityComparer.Default.Equals(ogDeclarer, declaringSymbol))
+            return true;
+
+        // Is symbol inherited?
+        var baseType = declaringSymbol.BaseType;
+        while (baseType is not null)
+        {
+            if (SymbolEqualityComparer.Default.Equals(ogDeclarer, baseType))
+                return true;
+            baseType = baseType.BaseType;
+        }
+
+        return false;
     }
 }

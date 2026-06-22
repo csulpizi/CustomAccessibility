@@ -38,3 +38,20 @@ interface IUnrestrictedInterface { }
 
 [OnlyAccessibleBy("Testing.Tests.DerivedClass4")]
 interface IRestrictedInterface { }
+
+[OnlyAccessibleBy(nameof(Tests.TestClassUsingStaticA))]
+[OnlyAccessibleBy(nameof(Tests.TestClassUsingStaticC))]
+static class StaticClass
+{
+    internal static void Foo() { }
+
+    internal static int A = 4;
+    internal static bool C => false;
+
+    static string b = "attt";
+    internal static string B
+    {
+        get { return b; }
+        set { b = value; }
+    }
+}

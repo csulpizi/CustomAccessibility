@@ -37,28 +37,20 @@ public class AttributeAnalyzer : DiagnosticAnalyzer
             return;
         ValidateSymbol(ctx, node, declared);
 
-        var skipInternalCheck =
-            node is InterfaceDeclarationSyntax
-            && declared.DeclaredAccessibility == Accessibility.Internal;
-
         var members = node.ChildNodes()
             .Where(child => child is MemberDeclarationSyntax)
             .Cast<MemberDeclarationSyntax>();
         foreach (var member in members)
-        {
-            ValidateMemberDeclaration(ctx, member, skipInternalCheck);
-        }
+            ValidateMemberDeclaration(ctx, member);
     }
 
     //FIXME: FACTOR OUT!!!!!@
     static void ValidateMemberDeclaration(
         SyntaxNodeAnalysisContext ctx,
-        MemberDeclarationSyntax node,
-        bool skipInternalCheck
+        MemberDeclarationSyntax node
     )
     {
-        var isInternalAccessibility =
-            skipInternalCheck || node.Modifiers.Any(SyntaxKind.InternalKeyword);
+        var isInternalAccessibility = node.Modifiers.Any(SyntaxKind.InternalKeyword);
         var attributes = node.AttributeLists.Select(x => x.Attributes).SelectMany(x => x);
         int nAccessibilityAttributes = 0;
 
@@ -70,16 +62,18 @@ public class AttributeAnalyzer : DiagnosticAnalyzer
                 nameof(Attributes.InternalAccessOnly) == attributeName
                 || nameof(Attributes.ExternalAccessOnly) == attributeName
                 || nameof(Attributes.AccessibleByAll) == attributeName
+                || nameof(Attributes.OnlyAccessibleBy) == attributeName
             )
             {
-                nAccessibilityAttributes++;
+                if (nameof(Attributes.OnlyAccessibleBy) != attributeName)
+                    nAccessibilityAttributes++;
                 if (nAccessibilityAttributes > 1)
                 {
-                    ctx.ReportDiagnostic(Diagnostic.Create(MultipleAttributes.Rule, location));
+                    MultipleAttributes.Report(ctx, location);
                 }
                 if (!isInternalAccessibility)
                 {
-                    ctx.ReportDiagnostic(Diagnostic.Create(InvalidAttributeUsage.Rule, location));
+                    InvalidAttributeUsage.Report(ctx, location);
                 }
             }
         }
@@ -116,7 +110,7 @@ public class AttributeAnalyzer : DiagnosticAnalyzer
                 )
             )
             {
-                ctx.ReportDiagnostic(Diagnostic.Create(InvalidAttributeUsage.Rule, location));
+                InvalidAttributeUsage.Report(ctx, location);
             }
 
             if (
@@ -128,7 +122,7 @@ public class AttributeAnalyzer : DiagnosticAnalyzer
                 nAccessibilityAttributes++;
                 if (nAccessibilityAttributes > 1)
                 {
-                    ctx.ReportDiagnostic(Diagnostic.Create(MultipleAttributes.Rule, location));
+                    MultipleAttributes.Report(ctx, location);
                 }
             }
         }

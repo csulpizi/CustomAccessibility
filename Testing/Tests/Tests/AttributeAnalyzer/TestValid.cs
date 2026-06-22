@@ -1,6 +1,6 @@
 using CustomAccessiblity.Attributes;
 
-namespace Testing.Tests.Attributes;
+namespace Testing.Tests.AttributeAnalyzer;
 
 [ExternalAccessOnly]
 class AttributedClass { }
@@ -13,6 +13,11 @@ interface IAttributed { }
 
 [ExternalAccessOnly]
 struct AttributedStruct { }
+
+[ExternalAccessOnly]
+[OnlyAccessibleBy("SomeClass")]
+[OnlyAccessibleBy("SomeClass2")]
+class AttributedClass2 { }
 
 class AttributedMembersOfClass
 {
@@ -33,12 +38,6 @@ interface IAttributedMembersOfInterface
 
     [ExternalAccessOnly]
     internal int Property { get; }
-
-    [ExternalAccessOnly]
-    void MethodNoInternalSpecified();
-
-    [ExternalAccessOnly]
-    int PropertyNoInternalSpecified { get; }
 }
 
 struct AttributedMembersOfStruct()

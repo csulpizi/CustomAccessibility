@@ -46,3 +46,23 @@ class ExternalReferencesB
     readonly Definitions.External.BothClassSpecified f = new();
 #pragma warning restore CACC000 // Restricted Access
 }
+
+class TestMemberAccess
+{
+    void Foo(Definitions.External.ClassWithMembers o)
+    {
+        o.UnrestrictedFoo();
+        _ = o.UnrestrictedField;
+        _ = o.UnrestrictedProperty;
+
+#pragma warning disable CACC001 // Restricted Access
+        o.RestrictedFoo();
+#pragma warning restore CACC001 // Restricted Access
+#pragma warning disable CACC001 // Restricted Access
+        _ = o.RestrictedField;
+#pragma warning restore CACC001 // Restricted Access
+#pragma warning disable CACC001 // Restricted Access
+        _ = o.RestrictedProperty;
+#pragma warning restore CACC001 // Restricted Access
+    }
+}

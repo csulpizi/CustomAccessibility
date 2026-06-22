@@ -12,6 +12,14 @@ class ClassWithMembers
 
     [OnlyAccessibleBy(nameof(ClassAccessesMembersA))]
     internal void Foo() { }
+
+     string s = "some string";
+    [OnlyAccessibleBy(nameof(ClassAccessesMembersA))]
+    internal string S
+    {
+        get => s;
+        set => s = value;
+    }
 }
 
 static class StaticClassWithMembers
@@ -43,6 +51,8 @@ class ClassAccessesMembersA
         _ = obj.A;
         _ = obj.B;
         obj.Foo();
+        _ = obj.S;
+        obj.S = "Hello!";
 
         _ = StaticClassWithMembers.A;
         _ = StaticClassWithMembers.B;
@@ -67,6 +77,13 @@ class ClassAccessesMembersB
 #pragma warning restore CACC000 // Restricted Access
 #pragma warning disable CACC000 // Restricted Access
         obj.Foo();
+#pragma warning restore CACC000 // Restricted Access
+
+#pragma warning disable CACC000 // Restricted Access
+        _ = obj.S;
+#pragma warning restore CACC000 // Restricted Access
+#pragma warning disable CACC000 // Restricted Access
+        obj.S = "Hello!";
 #pragma warning restore CACC000 // Restricted Access
 
 #pragma warning disable CACC000 // Restricted Access

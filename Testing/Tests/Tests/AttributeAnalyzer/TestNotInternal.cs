@@ -1,6 +1,6 @@
 using CustomAccessiblity.Attributes;
 
-namespace Testing.Tests.Attributes;
+namespace Testing.Tests.AttributeAnalyzer;
 
 class ClassWithNonInternalMembers
 {
@@ -20,7 +20,20 @@ class ClassWithNonInternalMembers
     int Property => 0;
 }
 
-public interface IWithNonInternalMembers
+interface IInternalWithNonInternalMembers
+{
+#pragma warning disable CACC100 // Invalid Attribute Usage
+    [AccessibleByAll]
+#pragma warning restore CACC100 // Invalid Attribute Usage
+    void Method();
+
+#pragma warning disable CACC100 // Invalid Attribute Usage
+    [AccessibleByAll]
+#pragma warning restore CACC100 // Invalid Attribute Usage
+    int Property { get; }
+}
+
+public interface IPublicWithNonInternalMembers
 {
 #pragma warning disable CACC100 // Invalid Attribute Usage
     [AccessibleByAll]

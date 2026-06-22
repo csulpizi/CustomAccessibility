@@ -35,3 +35,18 @@ class WildCard { }
 [AccessibleByAll]
 [OnlyAccessibleBy("Testing.Tests.Shamwow.*")]
 class IncorrectWildCard { }
+
+[AccessibleByAll]
+class ClassWithMembers
+{
+    internal void RestrictedFoo() { }
+    internal int RestrictedField = 0;
+    internal int RestrictedProperty => 4;
+
+    [AccessibleByAll]
+    internal void UnrestrictedFoo() { }
+    [AccessibleByAll]
+    internal int UnrestrictedField = 0;
+    [AccessibleByAll]
+    internal int UnrestrictedProperty => 4;
+}

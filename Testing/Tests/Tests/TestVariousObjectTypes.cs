@@ -44,6 +44,10 @@ class VariousObjectReferencesA
     IRestrictedInterface f = new RestrictedInterfaceImplementation();
     UnrestrictedStruct g = new();
     RestrictedStruct h = new();
+    Func<RestrictedClass, int> i = r =>
+    {
+        return r.GetHashCode();  
+    };
 }
 
 class VariousObjectReferencesB
@@ -61,4 +65,17 @@ class VariousObjectReferencesB
 #pragma warning disable CACC000 // Restricted Access
     RestrictedStruct d = new();
 #pragma warning restore CACC000 // Restricted Access
+#pragma warning disable CACC000 // Restricted Access
+    Func<RestrictedClass, int> i = r =>
+#pragma warning restore CACC000 // Restricted Access
+    {
+        return r.GetHashCode();  
+    };
+    Func<int, int> j = x =>
+    {
+#pragma warning disable CACC000 // Restricted Access
+        RestrictedClass c = new();
+#pragma warning restore CACC000 // Restricted Access
+        return x;
+    };
 }

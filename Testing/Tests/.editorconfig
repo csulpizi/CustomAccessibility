@@ -27,3 +27,6 @@ dotnet_diagnostic.IDE0079.severity = error
 
 # IDE0251: Make member 'readonly'
 csharp_style_prefer_readonly_struct_member = false
+
+# IDE0320: Make anonymous function static
+csharp_prefer_static_anonymous_function = true

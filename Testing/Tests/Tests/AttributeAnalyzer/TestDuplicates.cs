@@ -1,6 +1,6 @@
 using CustomAccessiblity.Attributes;
 
-namespace Testing.Tests.Attributes;
+namespace Testing.Tests.AttributeAnalyzer;
 
 [ExternalAccessOnly]
 #pragma warning disable CACC101 // Invalid Attribute Usage
