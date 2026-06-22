@@ -1,5 +1,4 @@
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace CustomAccessiblity.Rules;
 
@@ -10,7 +9,6 @@ static class UsingStaticUseRestricted
         "a class declared in this file"
     );
 
-    // FIXME: rm internal
     internal static DiagnosticDescriptor Create(string usingClass, string declaredClass) =>
         new(
             "CACC002",
@@ -20,16 +18,4 @@ static class UsingStaticUseRestricted
             DiagnosticSeverity.Error,
             isEnabledByDefault: true
         );
-
-    internal static void Report(
-        SyntaxNodeAnalysisContext ctx,
-        ISymbol importedClass,
-        ISymbol declaredClass,
-        Location location
-    )
-    {
-        ctx.ReportDiagnostic(
-            Diagnostic.Create(Create(importedClass.Name, declaredClass.Name), location)
-        );
-    }
 }

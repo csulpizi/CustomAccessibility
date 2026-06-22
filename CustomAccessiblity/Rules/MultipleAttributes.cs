@@ -14,9 +14,4 @@ static class MultipleAttributes
             DiagnosticSeverity.Error,
             isEnabledByDefault: true
         );
-
-    internal static void Report(SyntaxNodeAnalysisContext ctx, Location location)
-    {
-        ctx.ReportDiagnostic(Diagnostic.Create(Rule, location));
-    }
 }

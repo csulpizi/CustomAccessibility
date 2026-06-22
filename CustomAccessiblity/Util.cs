@@ -2,6 +2,7 @@ using System.Text.RegularExpressions;
 using CustomAccessiblity.Attributes;
 using Microsoft.CodeAnalysis;
 
+// FIXME: I SPELLED THIS WRONG FUCK
 namespace CustomAccessiblity;
 
 [AccessibleByAll]
@@ -96,7 +97,6 @@ static class Util
                 return true;
             baseType = baseType.BaseType;
         }
-
         return false;
     }
 }

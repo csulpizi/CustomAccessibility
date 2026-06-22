@@ -7,7 +7,7 @@ static class RestrictedAccess
 {
     internal static readonly DiagnosticDescriptor Rule = Create("symbol");
 
-    static DiagnosticDescriptor Create(string nested) =>
+    internal static DiagnosticDescriptor Create(string nested) =>
         new(
             "CACC000",
             "Restricted Access",
@@ -16,9 +16,4 @@ static class RestrictedAccess
             DiagnosticSeverity.Error,
             isEnabledByDefault: true
         );
-
-    internal static void Report(SyntaxNodeAnalysisContext ctx, ISymbol symbol, Location location)
-    {
-        ctx.ReportDiagnostic(Diagnostic.Create(Create(symbol.Name), location));
-    }
 }
