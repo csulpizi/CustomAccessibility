@@ -4,6 +4,8 @@ Provides type, namespace, and module-specific accessibility constraints. Package
 
 ## Install
 
+[![NuGet version (csulpizi.CustomAccessibility)](https://img.shields.io/nuget/v/csulpizi.CustomAccessibility.svg?style=flat-square)](https://www.nuget.org/packages/csulpizi.CustomAccessibility/)
+
 ```
 <ItemGroup>
     <PackageReference Include="csulpizi.CustomAccessibility" OutputItemType="Analyzer" />
