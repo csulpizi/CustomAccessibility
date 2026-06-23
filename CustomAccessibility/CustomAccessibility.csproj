@@ -8,8 +8,9 @@
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
     <RootNamespace>CustomAccessibility</RootNamespace>
     <BuildOutputTargetFolder>analyzers</BuildOutputTargetFolder>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>Cory Sulpizi</Authors>
+    <DevelopmentDependency>true</DevelopmentDependency>
     <PackageDescription>Provides type, namespace, and module-specific accessibility constraints. Packaged with a code analyzer that enforces those constraints in your IDE and during compilation.</PackageDescription>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <PackageIcon>icon.png</PackageIcon>
