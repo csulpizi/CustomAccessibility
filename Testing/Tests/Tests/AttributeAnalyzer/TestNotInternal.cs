@@ -1,103 +1,103 @@
-using CustomAccessiblity.Attributes;
+using CustomAccessibility.Attributes;
 
 namespace Testing.Tests.AttributeAnalyzer;
 
 class ClassWithNonInternalMembers
 {
-#pragma warning disable CACC100 // Invalid Attribute Usage
-    [AccessibleByAll]
-#pragma warning restore CACC100 // Invalid Attribute Usage
+    #region CACC100
+    [AccessibleByInternalAndExternal]
+    #endregion
     void Method() { }
 
-#pragma warning disable CACC100 // Invalid Attribute Usage
-    [AccessibleByAll]
-#pragma warning restore CACC100 // Invalid Attribute Usage
+    #region CACC100
+    [AccessibleByInternalAndExternal]
+    #endregion
     int Field = 0;
 
-#pragma warning disable CACC100 // Invalid Attribute Usage
-    [AccessibleByAll]
-#pragma warning restore CACC100 // Invalid Attribute Usage
+    #region CACC100
+    [AccessibleByInternalAndExternal]
+    #endregion
     int Property => 0;
 }
 
 interface IInternalWithNonInternalMembers
 {
-#pragma warning disable CACC100 // Invalid Attribute Usage
-    [AccessibleByAll]
-#pragma warning restore CACC100 // Invalid Attribute Usage
+    #region CACC100
+    [AccessibleByInternalAndExternal]
+    #endregion
     void Method();
 
-#pragma warning disable CACC100 // Invalid Attribute Usage
-    [AccessibleByAll]
-#pragma warning restore CACC100 // Invalid Attribute Usage
+    #region CACC100
+    [AccessibleByInternalAndExternal]
+    #endregion
     int Property { get; }
 }
 
 public interface IPublicWithNonInternalMembers
 {
-#pragma warning disable CACC100 // Invalid Attribute Usage
-    [AccessibleByAll]
-#pragma warning restore CACC100 // Invalid Attribute Usage
+    #region CACC100
+    [AccessibleByInternalAndExternal]
+    #endregion
     void Method();
 
-#pragma warning disable CACC100 // Invalid Attribute Usage
-    [AccessibleByAll]
-#pragma warning restore CACC100 // Invalid Attribute Usage
+    #region CACC100
+    [AccessibleByInternalAndExternal]
+    #endregion
     int Property { get; }
 }
 
 struct StructWithNonInternalMembers()
 {
-#pragma warning disable CACC100 // Invalid Attribute Usage
-    [AccessibleByAll]
-#pragma warning restore CACC100 // Invalid Attribute Usage
+    #region CACC100
+    [AccessibleByInternalAndExternal]
+    #endregion
     void Method() { }
 
-#pragma warning disable CACC100 // Invalid Attribute Usage
-    [AccessibleByAll]
-#pragma warning restore CACC100 // Invalid Attribute Usage
+    #region CACC100
+    [AccessibleByInternalAndExternal]
+    #endregion
     readonly void ReadonlyMethod() { }
 
-#pragma warning disable CACC100 // Invalid Attribute Usage
-    [AccessibleByAll]
-#pragma warning restore CACC100 // Invalid Attribute Usage
+    #region CACC100
+    [AccessibleByInternalAndExternal]
+    #endregion
     static void StaticMethod() { }
 
-#pragma warning disable CACC100 // Invalid Attribute Usage
-    [AccessibleByAll]
-#pragma warning restore CACC100 // Invalid Attribute Usage
+    #region CACC100
+    [AccessibleByInternalAndExternal]
+    #endregion
     int Field = 0;
 
-#pragma warning disable CACC100 // Invalid Attribute Usage
-    [AccessibleByAll]
-#pragma warning restore CACC100 // Invalid Attribute Usage
+    #region CACC100
+    [AccessibleByInternalAndExternal]
+    #endregion
     int Property => 0;
 }
 
 readonly struct ReadonlyStructWithNonInternalMembers()
 {
-#pragma warning disable CACC100 // Invalid Attribute Usage
-    [AccessibleByAll]
-#pragma warning restore CACC100 // Invalid Attribute Usage
+    #region CACC100
+    [AccessibleByInternalAndExternal]
+    #endregion
     void Method() { }
 
-#pragma warning disable CACC100 // Invalid Attribute Usage
-    [AccessibleByAll]
-#pragma warning restore CACC100 // Invalid Attribute Usage
+    #region CACC100
+    [AccessibleByInternalAndExternal]
+    #endregion
     readonly void ReadonlyMethod() { }
 
-#pragma warning disable CACC100 // Invalid Attribute Usage
-    [AccessibleByAll]
-#pragma warning restore CACC100 // Invalid Attribute Usage
+    #region CACC100
+    [AccessibleByInternalAndExternal]
+    #endregion
     static void StaticMethod() { }
 
-#pragma warning disable CACC100 // Invalid Attribute Usage
-    [AccessibleByAll]
-#pragma warning restore CACC100 // Invalid Attribute Usage
+    #region CACC100
+    [AccessibleByInternalAndExternal]
+    #endregion
     readonly int Field = 0;
 
-#pragma warning disable CACC100 // Invalid Attribute Usage
-    [AccessibleByAll]
-#pragma warning restore CACC100 // Invalid Attribute Usage
+    #region CACC100
+    [AccessibleByInternalAndExternal]
+    #endregion
     readonly int Property => 0;
 }

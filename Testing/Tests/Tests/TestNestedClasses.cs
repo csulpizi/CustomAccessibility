@@ -1,4 +1,4 @@
-using CustomAccessiblity.Attributes;
+using CustomAccessibility.Attributes;
 
 namespace Testing.Tests;
 
@@ -19,29 +19,21 @@ class UnrestrictedClassWildCardBoth;
 
 class OuterClass
 {
-#pragma warning disable CACC000 // Restricted Access
+    #region CACC000 SomeRestrictedClass,UnrestrictedClassForInnerclass,UnrestrictedClassForInnerclassVerbose
     SomeRestrictedClass x = new();
-#pragma warning restore CACC000 // Restricted Access
     UnrestrictedClassForOutclass y = new();
-#pragma warning disable CACC000 // Restricted Access
     UnrestrictedClassForInnerclass z = new();
-#pragma warning restore CACC000 // Restricted Access
-#pragma warning disable CACC000 // Restricted Access
     UnrestrictedClassForInnerclassVerbose a = new();
-#pragma warning restore CACC000 // Restricted Access
     UnrestrictedClassWildCardBoth b = new();
-
+    #endregion
     class InnerClass
     {
-#pragma warning disable CACC000 // Restricted Access
+        #region CACC000 SomeRestrictedClass,UnrestrictedClassForOutclass
         SomeRestrictedClass x = new();
-#pragma warning restore CACC000 // Restricted Access
-#pragma warning disable CACC000 // Restricted Access
         UnrestrictedClassForOutclass y = new();
-#pragma warning restore CACC000 // Restricted Access
         UnrestrictedClassForInnerclass z = new();
         UnrestrictedClassForInnerclassVerbose a = new();
         UnrestrictedClassWildCardBoth b = new();
-
+        #endregion
     }
 }

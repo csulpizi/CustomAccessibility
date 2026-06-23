@@ -1,6 +1,6 @@
-#pragma warning disable CACC002 // Restricted 'using static'
+#region CACC002 Testing.Definitions.Internal.StaticClass
 using static Testing.Definitions.Internal.StaticClass;
-#pragma warning restore CACC002 // Restricted 'using static'
+#endregion
 
 namespace Testing.Tests;
 

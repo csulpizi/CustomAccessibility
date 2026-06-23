@@ -1,4 +1,4 @@
-using CustomAccessiblity.Attributes;
+using CustomAccessibility.Attributes;
 
 namespace Testing.Tests;
 
@@ -46,36 +46,26 @@ class VariousObjectReferencesA
     RestrictedStruct h = new();
     Func<RestrictedClass, int> i = r =>
     {
-        return r.GetHashCode();  
+        return r.GetHashCode();
     };
 }
 
 class VariousObjectReferencesB
 {
-    // CACC000; not in allow-list
-#pragma warning disable CACC000 // Restricted Access
+    #region CACC000 RestrictedClass,RestrictedEnum,IRestrictedInterface,RestrictedStruct
     RestrictedClass a = new();
-#pragma warning restore CACC000 // Restricted Access
-#pragma warning disable CACC000 // Restricted Access
     RestrictedEnum b = RestrictedEnum.Default;
-#pragma warning restore CACC000 // Restricted Access
-#pragma warning disable CACC000 // Restricted Access
     IRestrictedInterface c = new RestrictedInterfaceImplementation();
-#pragma warning restore CACC000 // Restricted Access
-#pragma warning disable CACC000 // Restricted Access
     RestrictedStruct d = new();
-#pragma warning restore CACC000 // Restricted Access
-#pragma warning disable CACC000 // Restricted Access
     Func<RestrictedClass, int> i = r =>
-#pragma warning restore CACC000 // Restricted Access
     {
-        return r.GetHashCode();  
+        return r.GetHashCode();
     };
     Func<int, int> j = x =>
     {
-#pragma warning disable CACC000 // Restricted Access
         RestrictedClass c = new();
-#pragma warning restore CACC000 // Restricted Access
+
         return x;
     };
+    #endregion
 }

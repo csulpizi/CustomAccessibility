@@ -1,4 +1,4 @@
-using CustomAccessiblity.Attributes;
+using CustomAccessibility.Attributes;
 
 namespace Testing.Tests;
 
@@ -26,40 +26,21 @@ static class StaticClassAccessorA
 
 static class StaticClassAccessorB
 {
-#pragma warning disable CACC000 // Restricted Access
+    #region CACC000 StaticClassWithRestrictions
     static StaticClassWithRestrictions Foo() => throw new NotImplementedException();
-#pragma warning restore CACC000 // Restricted Access
 
-#pragma warning disable CACC000 // Restricted Access
     static readonly StaticClassWithRestrictions f = new();
-#pragma warning restore CACC000 // Restricted Access
 
     // Tuple field
-#pragma warning disable CACC000 // Restricted Access
-    static (StaticClassWithRestrictions,
-#pragma warning restore CACC000 // Restricted Access
-#pragma warning disable CACC000 // Restricted Access
-        StaticClassWithRestrictions) tf = (new(), new());
-#pragma warning restore CACC000 // Restricted Access
+    static (StaticClassWithRestrictions, StaticClassWithRestrictions) tf = (new(), new());
 
     // Qualified tuple field
-#pragma warning disable CACC000 // Restricted Access
-    static (StaticClassWithRestrictions a,
-#pragma warning restore CACC000 // Restricted Access
-#pragma warning disable CACC000 // Restricted Access
-        StaticClassWithRestrictions b) qtf = (new(), new());
-#pragma warning restore CACC000 // Restricted Access
+    static (StaticClassWithRestrictions a, StaticClassWithRestrictions b) qtf = (new(), new());
 
     // Property
-#pragma warning disable CACC000 // Restricted Access
     static StaticClassWithRestrictions P => new();
-#pragma warning restore CACC000 // Restricted Access
 
     // Tuple property
-#pragma warning disable CACC000 // Restricted Access
-    static (StaticClassWithRestrictions,
-#pragma warning restore CACC000 // Restricted Access
-#pragma warning disable CACC000 // Restricted Access
-        StaticClassWithRestrictions) Tp => (new(), new());
-#pragma warning restore CACC000 // Restricted Access
+    static (StaticClassWithRestrictions, StaticClassWithRestrictions) Tp => (new(), new());
+    #endregion
 }

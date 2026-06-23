@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CustomAccessiblity\CustomAccessiblity.csproj" />
+    <ProjectReference Include="..\..\CustomAccessibility\CustomAccessibility.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

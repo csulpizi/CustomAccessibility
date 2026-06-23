@@ -1,4 +1,4 @@
-using CustomAccessiblity.Attributes;
+using CustomAccessibility.Attributes;
 
 namespace Testing.Tests;
 
@@ -25,46 +25,22 @@ class ClassDeclaration0
     (RestrictedMember, RestrictedMember) Tp => (new(), new());
 }
 
+#region CACC000 RestrictedMember
 class ClassDeclaration1
 {
-#pragma warning disable CACC000 // Restricted Access
     internal ClassDeclaration1(RestrictedMember x) { }
-#pragma warning restore CACC000 // Restricted Access
 
-#pragma warning disable CACC000 // Restricted Access
     readonly RestrictedMember f = new();
-#pragma warning restore CACC000 // Restricted Access
-
-#pragma warning disable CACC000 // Restricted Access
     (RestrictedMember, RestrictedMember) tf = (new(), new());
-#pragma warning restore CACC000 // Restricted Access
-
-#pragma warning disable CACC000 // Restricted Access
     (RestrictedMember a, RestrictedMember b) qtf = (new(), new());
-#pragma warning restore CACC000 // Restricted Access
-
-#pragma warning disable CACC000 // Restricted Access
     RestrictedMember P => new();
-#pragma warning restore CACC000 // Restricted Access
-
-#pragma warning disable CACC000 // Restricted Access
     (RestrictedMember, RestrictedMember) Tp => (new(), new());
-#pragma warning restore CACC000 // Restricted Access
 }
 
-#pragma warning disable CACC000 // Restricted Access
 class ClassWithDefaultConstructor(RestrictedMember x) { }
-#pragma warning restore CACC000 // Restricted Access
 
-class ClassWithMultiDefaultConstructor(
-#pragma warning disable CACC000 // Restricted Access
-    RestrictedMember x,
-#pragma warning restore CACC000 // Restricted Access
-    int y,
-#pragma warning disable CACC000 // Restricted Access
-    RestrictedMember z
-#pragma warning restore CACC000 // Restricted Access
-) { }
+class ClassWithMultiDefaultConstructor(RestrictedMember x, int y, RestrictedMember z) { }
+#endregion
 
 // Inheritance works for external references
 class DerivedClass0 : Definitions.External.Both { }
@@ -73,9 +49,9 @@ class DerivedClass0 : Definitions.External.Both { }
 class DerivedClass1 : Definitions.Internal.WildCard { }
 
 // CACC000; cannot inherit inaccessible class
-#pragma warning disable CACC000 // Restricted Access
+#region CACC000 IncorrectWildCard
 class DerivedClass2 : Definitions.Internal.IncorrectWildCard { }
-#pragma warning restore CACC000 // Restricted Access
+#endregion
 
 // Inheritence works; unrestricted
 class DerivedClass3 : Definitions.Internal.IUnrestrictedInterface { }
@@ -84,6 +60,6 @@ class DerivedClass3 : Definitions.Internal.IUnrestrictedInterface { }
 class DerivedClass4 : Definitions.Internal.IRestrictedInterface { }
 
 // CACC000; cannot inherit inaccessible interface (not allow-listed)
-#pragma warning disable CACC000 // Restricted Access
+#region CACC000 IRestrictedInterface
 class DerivedClass5 : Definitions.Internal.IRestrictedInterface { }
-#pragma warning restore CACC000 // Restricted Access
+#endregion

@@ -1,9 +1,0 @@
-<Solution>
-  <Folder Name="/Testing/">
-    <Project Path="Testing/ExternalDefinitions/ExternalDefinitions.csproj" />
-    <Project Path="Testing/TestAnalyzer/TestAnalyzer.csproj" />
-    <Project Path="Testing/Tests/Tests.csproj" />
-  </Folder>
-  <Project Path="CustomAccessiblity/CustomAccessiblity.csproj" />
-  <Project Path="Silly/Silly.csproj" />
-</Solution>

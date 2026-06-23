@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <ProjectReference Include="..\..\CustomAccessiblity\CustomAccessiblity.csproj" OutputItemType="Analyzer" />
+    <ProjectReference Include="..\..\CustomAccessibility\CustomAccessibility.csproj" OutputItemType="Analyzer" />
     <ProjectReference Include="..\ExternalDefinitions\ExternalDefinitions.csproj" />
     <PackageReference Include="MSTest" Version="4.0.1" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Analyzer.Testing" Version="1.1.4" />

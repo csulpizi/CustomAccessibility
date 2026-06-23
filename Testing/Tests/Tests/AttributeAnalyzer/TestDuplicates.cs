@@ -1,123 +1,123 @@
-using CustomAccessiblity.Attributes;
+using CustomAccessibility.Attributes;
 
 namespace Testing.Tests.AttributeAnalyzer;
 
 [ExternalAccessOnly]
-#pragma warning disable CACC101 // Invalid Attribute Usage
+#region CACC101
 [InternalAccessOnly]
-#pragma warning restore CACC101 // Invalid Attribute Usage
+#endregion
 class OverAttributedClass { }
 
 [ExternalAccessOnly]
-#pragma warning disable CACC101 // Invalid Attribute Usage
+#region CACC101
 [InternalAccessOnly]
-#pragma warning restore CACC101 // Invalid Attribute Usage
+#endregion
 enum OverAttributedEnum { }
 
 [ExternalAccessOnly]
-#pragma warning disable CACC101 // Invalid Attribute Usage
+#region CACC101
 [InternalAccessOnly]
-#pragma warning restore CACC101 // Invalid Attribute Usage
+#endregion
 interface IOverAttributed { }
 
 [ExternalAccessOnly]
-#pragma warning disable CACC101 // Invalid Attribute Usage
+#region CACC101
 [InternalAccessOnly]
-#pragma warning restore CACC101 // Invalid Attribute Usage
+#endregion
 struct OverAttributedStruct { }
 
 class OverAttributedMembersOfClass
 {
     [ExternalAccessOnly]
-#pragma warning disable CACC101 // Invalid Attribute Usage
+    #region CACC101
     [InternalAccessOnly]
-#pragma warning restore CACC101 // Invalid Attribute Usage
+    #endregion
     internal void Method() { }
 
     [ExternalAccessOnly]
-#pragma warning disable CACC101 // Invalid Attribute Usage
+    #region CACC101
     [InternalAccessOnly]
-#pragma warning restore CACC101 // Invalid Attribute Usage
+    #endregion
     internal int Field = 0;
 
     [ExternalAccessOnly]
-#pragma warning disable CACC101 // Invalid Attribute Usage
+    #region CACC101
     [InternalAccessOnly]
-#pragma warning restore CACC101 // Invalid Attribute Usage
+    #endregion
     internal int Property => 0;
 }
 
 interface IOverAttributedMembersOfInterface
 {
     [ExternalAccessOnly]
-#pragma warning disable CACC101 // Invalid Attribute Usage
+    #region CACC101
     [InternalAccessOnly]
-#pragma warning restore CACC101 // Invalid Attribute Usage
+    #endregion
     internal void Method();
 
     [ExternalAccessOnly]
-#pragma warning disable CACC101 // Invalid Attribute Usage
+    #region CACC101
     [InternalAccessOnly]
-#pragma warning restore CACC101 // Invalid Attribute Usage
+    #endregion
     internal int Property { get; }
 }
 
 struct OverAttributedMembersOfStruct()
 {
     [ExternalAccessOnly]
-#pragma warning disable CACC101 // Invalid Attribute Usage
+    #region CACC101
     [InternalAccessOnly]
-#pragma warning restore CACC101 // Invalid Attribute Usage
+    #endregion
     internal void Method() { }
 
     [ExternalAccessOnly]
-#pragma warning disable CACC101 // Invalid Attribute Usage
+    #region CACC101
     [InternalAccessOnly]
-#pragma warning restore CACC101 // Invalid Attribute Usage
+    #endregion
     internal static void StaticMethod() { }
 
     [ExternalAccessOnly]
-#pragma warning disable CACC101 // Invalid Attribute Usage
+    #region CACC101
     [InternalAccessOnly]
-#pragma warning restore CACC101 // Invalid Attribute Usage
+    #endregion
     internal int Field = 0;
 
     [ExternalAccessOnly]
-#pragma warning disable CACC101 // Invalid Attribute Usage
+    #region CACC101
     [InternalAccessOnly]
-#pragma warning restore CACC101 // Invalid Attribute Usage
+    #endregion
     internal int Property => 0;
 }
 
 readonly struct OverAttributedMembersOfReadonlyStruct()
 {
     [ExternalAccessOnly]
-#pragma warning disable CACC101 // Invalid Attribute Usage
+    #region CACC101
     [InternalAccessOnly]
-#pragma warning restore CACC101 // Invalid Attribute Usage
+    #endregion
     internal void Method() { }
 
     [ExternalAccessOnly]
-#pragma warning disable CACC101 // Invalid Attribute Usage
+    #region CACC101
     [InternalAccessOnly]
-#pragma warning restore CACC101 // Invalid Attribute Usage
+    #endregion
     internal readonly void ReadonlyMethod() { }
 
     [ExternalAccessOnly]
-#pragma warning disable CACC101 // Invalid Attribute Usage
+    #region CACC101
     [InternalAccessOnly]
-#pragma warning restore CACC101 // Invalid Attribute Usage
+    #endregion
     internal static void StaticMethod() { }
 
     [ExternalAccessOnly]
-#pragma warning disable CACC101 // Invalid Attribute Usage
+    #region CACC101
     [InternalAccessOnly]
-#pragma warning restore CACC101 // Invalid Attribute Usage
+    #endregion
     readonly internal int Field = 0;
 
     [ExternalAccessOnly]
-#pragma warning disable CACC101 // Invalid Attribute Usage
+    #region CACC101
     [InternalAccessOnly]
-#pragma warning restore CACC101 // Invalid Attribute Usage
+    #endregion
     readonly internal int Property => 0;
 }

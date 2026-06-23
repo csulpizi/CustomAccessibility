@@ -1,4 +1,4 @@
-using CustomAccessiblity.Attributes;
+using CustomAccessibility.Attributes;
 
 namespace Testing.Tests;
 
@@ -25,51 +25,30 @@ struct StructDeclaration0
     (RestrictedMemberForStruct, RestrictedMemberForStruct) Tp => (new(), new());
 }
 
+#region CACC000 RestrictedMemberForStruct
 struct StructDeclaration1
 {
-#pragma warning disable CACC000 // Restricted Access
     internal StructDeclaration1(RestrictedMemberForStruct x) { }
-#pragma warning restore CACC000 // Restricted Access
 
-#pragma warning disable CACC000 // Restricted Access
     readonly RestrictedMemberForStruct f = new();
-#pragma warning restore CACC000 // Restricted Access
-
-#pragma warning disable CACC000 // Restricted Access
     (RestrictedMemberForStruct, RestrictedMemberForStruct) tf = (new(), new());
-#pragma warning restore CACC000 // Restricted Access
-
-#pragma warning disable CACC000 // Restricted Access
     (RestrictedMemberForStruct a, RestrictedMemberForStruct b) qtf = (new(), new());
-#pragma warning restore CACC000 // Restricted Access
-
-#pragma warning disable CACC000 // Restricted Access
     RestrictedMemberForStruct P => new();
-#pragma warning restore CACC000 // Restricted Access
-
-#pragma warning disable CACC000 // Restricted Access
     (RestrictedMemberForStruct, RestrictedMemberForStruct) Tp => (new(), new());
-#pragma warning restore CACC000 // Restricted Access
 }
 
-#pragma warning disable CACC000 // Restricted Access
 struct StructWithDefaultConstructor(RestrictedMemberForStruct x) { }
-#pragma warning restore CACC000 // Restricted Access
 
 struct StructWithMultiDefaultConstructor(
-#pragma warning disable CACC000 // Restricted Access
     RestrictedMemberForStruct x,
-#pragma warning restore CACC000 // Restricted Access
     int y,
-#pragma warning disable CACC000 // Restricted Access
     RestrictedMemberForStruct z
-#pragma warning restore CACC000 // Restricted Access
 ) { }
+#endregion
 
 // Inheritance works for external references
 struct DerivedStruct0 : Definitions.Internal.IUnrestrictedInterface { }
 
-// CACC000; cannot inherit inaccessible interface (not allow-listed)
-#pragma warning disable CACC000 // Restricted Access
+#region CACC000 IRestrictedInterface
 struct DerivedStruct1 : Definitions.Internal.IRestrictedInterface { }
-#pragma warning restore CACC000 // Restricted Access
+#endregion

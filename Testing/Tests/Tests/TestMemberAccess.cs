@@ -1,4 +1,4 @@
-using CustomAccessiblity.Attributes;
+using CustomAccessibility.Attributes;
 
 namespace Testing.Tests;
 
@@ -13,7 +13,8 @@ class ClassWithMembers
     [OnlyAccessibleBy(nameof(ClassAccessesMembersA))]
     internal void Foo() { }
 
-     string s = "some string";
+    string s = "some string";
+
     [OnlyAccessibleBy(nameof(ClassAccessesMembersA))]
     internal string S
     {
@@ -69,41 +70,24 @@ class ClassAccessesMembersB
     // CACC000; this class is NOT allow-listed
     void Foo(ClassWithMembers obj)
     {
-#pragma warning disable CACC000 // Restricted Access
-        _ = obj.A;
-#pragma warning restore CACC000 // Restricted Access
-#pragma warning disable CACC000 // Restricted Access
+        #region CACC000 A,B,S,Foo
+        _ = obj.A; //CACC000
+
         _ = obj.B;
-#pragma warning restore CACC000 // Restricted Access
-#pragma warning disable CACC000 // Restricted Access
         obj.Foo();
-#pragma warning restore CACC000 // Restricted Access
 
-#pragma warning disable CACC000 // Restricted Access
         _ = obj.S;
-#pragma warning restore CACC000 // Restricted Access
-#pragma warning disable CACC000 // Restricted Access
         obj.S = "Hello!";
-#pragma warning restore CACC000 // Restricted Access
 
-#pragma warning disable CACC000 // Restricted Access
         _ = StaticClassWithMembers.A;
-#pragma warning restore CACC000 // Restricted Access
-#pragma warning disable CACC000 // Restricted Access
         _ = StaticClassWithMembers.B;
-#pragma warning restore CACC000 // Restricted Access
-#pragma warning disable CACC000 // Restricted Access
         StaticClassWithMembers.Foo();
-#pragma warning restore CACC000 // Restricted Access
+        #endregion
 
-#pragma warning disable CACC000 // Restricted Access
+        #region CACC000 RestrictedStaticClassWithMembers
         _ = RestrictedStaticClassWithMembers.A;
-#pragma warning restore CACC000 // Restricted Access
-#pragma warning disable CACC000 // Restricted Access
         _ = RestrictedStaticClassWithMembers.B;
-#pragma warning restore CACC000 // Restricted Access
-#pragma warning disable CACC000 // Restricted Access
         RestrictedStaticClassWithMembers.Foo();
-#pragma warning restore CACC000 // Restricted Access
+        #endregion
     }
 }

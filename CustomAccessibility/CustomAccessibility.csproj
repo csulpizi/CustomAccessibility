@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>12</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+    <RootNamespace>CustomAccessibility</RootNamespace>
+    <BuildOutputTargetFolder>analyzers</BuildOutputTargetFolder>
+    <Version>1.0.0</Version>
+    <Authors>Cory Sulpizi</Authors>
+    <PackageDescription>Provides type, namespace, and module-specific accessibility constraints. Packaged with a code analyzer that enforces those constraints in wer IDE and during compilation.</PackageDescription>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageId>csulpizi.CustomAccessibility</PackageId>
+    <PackageProjectUrl>https://github.com/csulpizi/CustomAccessibility</PackageProjectUrl>
+    <PackageTags>analyzer,rosalyn,accessibility,attributes,codequality</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.3.0" />
+    <None Include="readme.md" Pack="true" PackagePath="\"/>
+    <None Include="icon.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+
+</Project>

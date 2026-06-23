@@ -2,11 +2,11 @@ namespace Testing.Tests;
 
 class ExternalReferencesA
 {
-    // AccessibleByAll and ExternalAccessOnly both work when "this" class is specified
+    // AccessibleByInternalAndExternal and ExternalAccessOnly both work when "this" class is specified
     readonly Definitions.External.ExternalOnlyClassSpecified e = new();
     readonly Definitions.External.BothClassSpecified f = new();
 
-    // AccessibleByAll and ExternalAccessOnly both work without issue when class unspecified
+    // AccessibleByInternalAndExternal and ExternalAccessOnly both work without issue when class unspecified
     readonly Definitions.External.ExternalOnly g = new();
     readonly Definitions.External.Both h = new();
 
@@ -14,37 +14,31 @@ class ExternalReferencesA
     readonly Definitions.External.WildCard i = new();
 
     // CACC000; wild card with incorrect ns should not work
-#pragma warning disable CACC000 // Restricted Access
+    #region CACC000 IncorrectWildCard
     readonly Definitions.External.IncorrectWildCard j = new();
-#pragma warning restore CACC000 // Restricted Access
+    #endregion
 
     // CACC001; external blocked by default
-#pragma warning disable CACC001 // Restricted Access
+    #region CACC001 Default,DefaultClassSpecified
     readonly Definitions.External.Default a = new();
-#pragma warning restore CACC001 // Restricted Access
-#pragma warning disable CACC001 // Restricted Access
     readonly Definitions.External.DefaultClassSpecified b = new();
-#pragma warning restore CACC001 // Restricted Access
+    #endregion
 
     // CACC000; internal only's cannot be referenced
-#pragma warning disable CACC000 // Restricted Access
+    #region CACC000 InternalOnly,InternalOnlyClassSpecified
     readonly Definitions.External.InternalOnly c = new();
-#pragma warning restore CACC000 // Restricted Access
-#pragma warning disable CACC000 // Restricted Access
     readonly Definitions.External.InternalOnlyClassSpecified d = new();
-#pragma warning restore CACC000 // Restricted Access
+    #endregion
 }
 
 // Similar to class A, but 'ClassSpecified' attributes do not point to this class
 class ExternalReferencesB
 {
     // CACC000; this class is not allow-listed
-#pragma warning disable CACC000 // Restricted Access
+    #region CACC000 ExternalOnlyClassSpecified,BothClassSpecified
     readonly Definitions.External.ExternalOnlyClassSpecified e = new();
-#pragma warning restore CACC000 // Restricted Access
-#pragma warning disable CACC000 // Restricted Access
     readonly Definitions.External.BothClassSpecified f = new();
-#pragma warning restore CACC000 // Restricted Access
+    #endregion
 }
 
 class TestMemberAccess
@@ -55,14 +49,32 @@ class TestMemberAccess
         _ = o.UnrestrictedField;
         _ = o.UnrestrictedProperty;
 
-#pragma warning disable CACC001 // Restricted Access
+        #region CACC001 RestrictedFoo,RestrictedField,RestrictedProperty
         o.RestrictedFoo();
-#pragma warning restore CACC001 // Restricted Access
-#pragma warning disable CACC001 // Restricted Access
         _ = o.RestrictedField;
-#pragma warning restore CACC001 // Restricted Access
-#pragma warning disable CACC001 // Restricted Access
         _ = o.RestrictedProperty;
-#pragma warning restore CACC001 // Restricted Access
+        #endregion
+    }
+}
+
+class TestProtectedAccess : Definitions.External.ClassForProtectedAccessTests
+{
+    void Foo()
+    {
+        // None of these fail, all are acceptable
+        _ = A;
+        _ = B;
+        _ = C;
+    }
+}
+
+class TestProtectedAccessOneMoreLevel : TestProtectedAccess
+{
+    void Foo()
+    {
+        // None of these fail, all are acceptable
+        _ = A;
+        _ = B;
+        _ = C;
     }
 }

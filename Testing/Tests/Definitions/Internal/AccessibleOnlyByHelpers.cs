@@ -1,24 +1,24 @@
-using CustomAccessiblity.Attributes;
+using CustomAccessibility.Attributes;
 
 namespace Testing.Definitions.Internal;
 
 [OnlyAccessibleBy("Dog")]
-class ByDog {}
+class ByDog { }
 
 [OnlyAccessibleBy("**.Dog")]
-class ByDogAlt {}
+class ByDogAlt { }
 
 [OnlyAccessibleBy("*Dog")]
-class ByPrefixDog {}
+class ByPrefixDog { }
 
 [OnlyAccessibleBy("Testing.Tests.RestrictedAccessAnalyzer.AccessibleBy.*")]
-class ByOuterNamespace {}
+class ByOuterNamespace { }
 
 [OnlyAccessibleBy("Testing.Tests.RestrictedAccessAnalyzer.AccessibleBy.**")]
-class ByWholeNamespace {}
+class ByEntireNamespace { }
 
 [OnlyAccessibleBy("Testing.Tests.RestrictedAccessAnalyzer.AccessibleBy.OuterDog.Dog")]
-class ByFullyQualified {}
+class ByFullyQualified { }
 
 [OnlyAccessibleBy("**")]
-class ByCompleteWildCard {}
+class ByCompleteWildCard { }

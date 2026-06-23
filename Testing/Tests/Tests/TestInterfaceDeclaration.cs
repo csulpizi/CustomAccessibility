@@ -1,4 +1,4 @@
-using CustomAccessiblity.Attributes;
+using CustomAccessibility.Attributes;
 
 namespace Testing.Tests;
 
@@ -18,30 +18,24 @@ interface IDeclaration0
 
 interface IDeclaration1
 {
-#pragma warning disable CACC000 // Restricted Access
+    #region CACC000 RestrictedClassForInterface
     void Foo(RestrictedClassForInterface x);
-#pragma warning restore CACC000 // Restricted Access
 
     // Property
-#pragma warning disable CACC000 // Restricted Access
     RestrictedClassForInterface P { get; set; }
-#pragma warning restore CACC000 // Restricted Access
 
     // Tuple property
-#pragma warning disable CACC000 // Restricted Access
-    (RestrictedClassForInterface,
-#pragma warning restore CACC000 // Restricted Access
-#pragma warning disable CACC000 // Restricted Access
-        RestrictedClassForInterface
-#pragma warning restore CACC000 // Restricted Access
-    ) Tp { get; set; }
+    (RestrictedClassForInterface, RestrictedClassForInterface) Tp { get; set; }
+    #endregion
 }
 
 interface IInternalInterfaceWithMembers
 {
-    // Works; 'internal' not required when implicit
+    // Does not work; attribute requires implicit 'internal'
+    #region CACC100
     [OnlyAccessibleBy(nameof(InterfaceAccessingClass))]
-    internal void Foo();
+    #endregion
+    void Foo();
 
     [OnlyAccessibleBy(nameof(InterfaceAccessingClass))]
     internal void Goo();
@@ -52,10 +46,10 @@ interface IInternalInterfaceWithMembers
 
 public interface IPublicInterfaceWithMembers
 {
-    // Does not work; implicitly 'public'
-#pragma warning disable CACC100 // Invalid Attribute Usage
+    // Does not work; attribute requires implicit 'internal'
+    #region CACC100
     [OnlyAccessibleBy(nameof(InterfaceAccessingClass))]
-#pragma warning restore CACC100 // Invalid Attribute Usage
+    #endregion
     void Foo();
 
     [OnlyAccessibleBy(nameof(InterfaceAccessingClass))]
@@ -83,18 +77,11 @@ class InterfaceAccessingClassNotAllowed
 {
     void Foo(IInternalInterfaceWithMembers a, IPublicInterfaceWithMembers b)
     {
-#pragma warning disable CACC000 // Restricted Access
+        #region CACC000 Goo,Field
         a.Goo();
-#pragma warning restore CACC000 // Restricted Access
-#pragma warning disable CACC000 // Restricted Access
         _ = a.Field;
-#pragma warning restore CACC000 // Restricted Access
-
-#pragma warning disable CACC000 // Restricted Access
         b.Goo();
-#pragma warning restore CACC000 // Restricted Access
-#pragma warning disable CACC000 // Restricted Access
         _ = b.Field;
-#pragma warning restore CACC000 // Restricted Access
+        #endregion
     }
 }

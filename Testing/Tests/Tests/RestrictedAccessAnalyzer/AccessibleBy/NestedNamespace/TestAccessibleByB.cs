@@ -7,12 +7,10 @@ class Dog
     Definitions.Internal.ByPrefixDog y = new();
 
     // Not a direct child of namespace; it's nested
-#pragma warning disable CACC000 // Restricted Access
+    #region CACC000 ByOuterNamespace,ByFullyQualified
     Definitions.Internal.ByOuterNamespace z = new();
-#pragma warning restore CACC000 // Restricted Access
-    Definitions.Internal.ByWholeNamespace a = new();
-#pragma warning disable CACC000 // Restricted Access
+    Definitions.Internal.ByEntireNamespace a = new();
     Definitions.Internal.ByFullyQualified b = new();
-#pragma warning restore CACC000 // Restricted Access
-Definitions.Internal.ByCompleteWildCard c = new();
+    #endregion
+    Definitions.Internal.ByCompleteWildCard c = new();
 }

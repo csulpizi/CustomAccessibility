@@ -1,4 +1,4 @@
-using CustomAccessiblity.Attributes;
+using CustomAccessibility.Attributes;
 
 namespace Testing.Definitions.External;
 
@@ -21,32 +21,45 @@ class ExternalOnly { }
 [OnlyAccessibleBy("Testing.Tests.ExternalReferencesA")]
 class ExternalOnlyClassSpecified { }
 
-[AccessibleByAll]
+[AccessibleByInternalAndExternal]
 class Both { }
 
-[AccessibleByAll]
+[AccessibleByInternalAndExternal]
 [OnlyAccessibleBy("Testing.Tests.ExternalReferencesA")]
 class BothClassSpecified { }
 
-[AccessibleByAll]
+[AccessibleByInternalAndExternal]
 [OnlyAccessibleBy("Testing.Tests.ExternalReferences*")]
 class WildCard { }
 
-[AccessibleByAll]
+[AccessibleByInternalAndExternal]
 [OnlyAccessibleBy("Testing.Tests.Shamwow.*")]
 class IncorrectWildCard { }
 
-[AccessibleByAll]
+[AccessibleByInternalAndExternal]
 class ClassWithMembers
 {
     internal void RestrictedFoo() { }
+
     internal int RestrictedField = 0;
     internal int RestrictedProperty => 4;
 
-    [AccessibleByAll]
+    [AccessibleByInternalAndExternal]
     internal void UnrestrictedFoo() { }
-    [AccessibleByAll]
+
+    [AccessibleByInternalAndExternal]
     internal int UnrestrictedField = 0;
-    [AccessibleByAll]
+
+    [AccessibleByInternalAndExternal]
     internal int UnrestrictedProperty => 4;
+}
+
+
+public class ClassForProtectedAccessTests
+{
+    protected int A => 8;
+
+    protected internal int B => 7;
+
+    internal int C => 9;
 }

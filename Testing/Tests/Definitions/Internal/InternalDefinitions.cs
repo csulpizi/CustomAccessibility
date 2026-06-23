@@ -1,4 +1,4 @@
-using CustomAccessiblity.Attributes;
+using CustomAccessibility.Attributes;
 
 namespace Testing.Definitions.Internal;
 
@@ -21,10 +21,10 @@ class ExternalOnly { }
 [OnlyAccessibleBy("Testing.Tests.InternalReferencesA")]
 class ExternalOnlyClassSpecified { }
 
-[AccessibleByAll]
+[AccessibleByInternalAndExternal]
 class Both { }
 
-[AccessibleByAll]
+[AccessibleByInternalAndExternal]
 [OnlyAccessibleBy("Testing.Tests.InternalReferencesA")]
 class BothClassSpecified { }
 
@@ -41,6 +41,7 @@ interface IRestrictedInterface { }
 
 [OnlyAccessibleBy(nameof(Tests.TestClassUsingStaticA))]
 [OnlyAccessibleBy(nameof(Tests.TestClassUsingStaticC))]
+[OnlyAccessibleBy(nameof(Tests.TestClassUsingStaticD))]
 static class StaticClass
 {
     internal static void Foo() { }
