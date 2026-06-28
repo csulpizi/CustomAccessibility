@@ -4,7 +4,7 @@
 
 Rule ID | Category | Severity | Notes
 --------|----------|----------|--------------------
-CACC000 |  Usage   |  Error   | Restricted Access, [Documentation](https://github.com/csulpizi/CustomAccessibility/Documentation/DiagnosticRules.md#cacc000)
-CACC001 |  Usage   |  Error   | Restricted External Access, [Documentation](https://github.com/csulpizi/CustomAccessibility/Documentation/DiagnosticRules.md#cacc001)
-CACC002 |  Usage   |  Error   | Restricted 'using static', [Documentation](https://github.com/csulpizi/CustomAccessibility/Documentation/DiagnosticRules.md#cacc002)
-CACC100 |  Usage   |  Error   | Invalid Attribute Usage, [Documentation](https://github.com/csulpizi/CustomAccessibility/Documentation/DiagnosticRules.md#cacc100)
+CACC000 |  Usage   |  Error   | Restricted Access, [Documentation](https://github.com/csulpizi/CustomAccessibility/blob/main/Documentation/DiagnosticRules.md#cacc000)
+CACC001 |  Usage   |  Error   | Restricted External Access, [Documentation](https://github.com/csulpizi/CustomAccessibility/blob/main/Documentation/DiagnosticRules.md#cacc001)
+CACC002 |  Usage   |  Error   | Restricted 'using static', [Documentation](https://github.com/csulpizi/CustomAccessibility/blob/main/Documentation/DiagnosticRules.md#cacc002)
+CACC100 |  Usage   |  Error   | Invalid Attribute Usage, [Documentation](https://github.com/csulpizi/CustomAccessibility/blob/main/Documentation/DiagnosticRules.md#cacc100)

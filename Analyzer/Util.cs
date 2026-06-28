@@ -21,12 +21,21 @@ static class Util
             || symbol.DeclaredAccessibility == Accessibility.ProtectedOrInternal;
     }
 
-    internal static IEnumerable<Regex> GetClassRegexes(ISymbol symbol)
+    static IEnumerable<AttributeData> GetOnlyAccessibleAttributes(ISymbol symbol)
     {
         return symbol
             .GetAttributes()
-            .Where(x => nameof(OnlyAccessibleBy) == x.AttributeClass?.Name)
-            .Select(CoerceAttributeToRegex);
+            .Where(x => nameof(OnlyAccessibleBy) == x.AttributeClass?.Name);
+    }
+
+    internal static IEnumerable<string> GetAllowList(ISymbol symbol)
+    {
+        return GetOnlyAccessibleAttributes(symbol).Select(CoerceAttributeToOnlyAccessibleString);
+    }
+
+    internal static IEnumerable<Regex> GetAllowListRegexes(ISymbol symbol)
+    {
+        return GetAllowList(symbol).Select(CoerceWildCardStringToRegex);
     }
 
     internal static bool IsExternalAccess(INamedTypeSymbol declaringClassSymbol, ISymbol subject)
@@ -56,12 +65,12 @@ static class Util
         return s;
     }
 
-    static Regex CoerceAttributeToRegex(AttributeData attribute)
+    static string CoerceAttributeToOnlyAccessibleString(AttributeData attribute)
     {
         var val = attribute.ConstructorArguments.FirstOrDefault().Value;
         if (val is null)
-            return new("");
-        return CoerceWildCardStringToRegex((string)val);
+            return "";
+        return (string)val;
     }
 
     // Allow external for unit testing

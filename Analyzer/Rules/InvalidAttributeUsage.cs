@@ -12,6 +12,6 @@ static class InvalidAttributeUsage
             "Usage",
             DiagnosticSeverity.Error,
             isEnabledByDefault: true,
-            helpLinkUri: "https://github.com/csulpizi/CustomAccessibility/Documentation/DiagnosticRules.md#cacc100"
+            helpLinkUri: "https://github.com/csulpizi/CustomAccessibility/blob/main/Documentation/DiagnosticRules.md#cacc100"
         );
 }

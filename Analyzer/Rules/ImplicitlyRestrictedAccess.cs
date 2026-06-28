@@ -12,6 +12,6 @@ static class ImplicitlyRestrictedAccess
             "Usage",
             DiagnosticSeverity.Error,
             isEnabledByDefault: true,
-            helpLinkUri: "https://github.com/csulpizi/CustomAccessibility/Documentation/DiagnosticRules.md#cacc001"
+            helpLinkUri: "https://github.com/csulpizi/CustomAccessibility/blob/main/Documentation/DiagnosticRules.md#cacc001"
         );
 }

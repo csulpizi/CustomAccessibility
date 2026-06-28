@@ -76,9 +76,10 @@ public partial class RestrictedAccessAnalyzer : DiagnosticAnalyzer
             var declaredType =
                 ctx.SemanticModel.GetDeclaredSymbol(typeDeclaration)
                 ?? throw new Exception("TypeDeclarationSyntax somehow has no DeclaredSymbol");
-            if (ValidateAccessibility(importedType, declaredType) != ValidationResult.NoError)
+            var (result, allowlist) = ValidateAccessibility(importedType, declaredType);
+            if (result != ValidationResult.NoError)
             {
-                ReportCACC002(ctx, importedType, declaredType, usingNode);
+                ReportCACC002(ctx, importedType, declaredType, usingNode, allowlist);
                 return;
             }
         }
@@ -100,7 +101,7 @@ public partial class RestrictedAccessAnalyzer : DiagnosticAnalyzer
         INamedTypeSymbol enclosingType
     )
     {
-        Dictionary<int, ValidationResult> cache = [];
+        Dictionary<int, (ValidationResult result, IEnumerable<string> allowlist)> cache = [];
         var descendents = node.DescendantNodes(x =>
                 node == x || (x is not TypeDeclarationSyntax && x is not AttributeSyntax)
             )
@@ -120,12 +121,12 @@ public partial class RestrictedAccessAnalyzer : DiagnosticAnalyzer
                 cache[symbolHash] = validation;
             }
 
-            if (validation is ValidationResult.NoError)
+            if (validation.result is ValidationResult.NoError)
                 ReportNoAccessIssueForReferencedType(ctx, typeReference);
-            else if (validation is ValidationResult.ImplicitlyRestrictedAccess)
+            else if (validation.result is ValidationResult.ImplicitlyRestrictedAccess)
                 ReportCACC001(ctx, typeReference);
             else
-                ReportCACC000(ctx, typeReference);
+                ReportCACC000(ctx, typeReference, validation.allowlist);
         }
     }
 }
