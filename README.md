@@ -96,7 +96,7 @@ class SomeClass
 
 ## External Access
 
-When we want to give a project access to another project's internals (e.g. `[assembly: InternalsVisibleTo("TestProject")]`), we can specify which definitions we want the external project to have access to.
+When we want to give a project access to another project's internals (e.g. `[assembly: InternalsVisibleTo("TestProject")]`), we can specify which definitions we want the external project to have access to. The external project also needs to install the CustomAccessibility package.
 
 ```
 using CustomAccessibility.Attributes;
