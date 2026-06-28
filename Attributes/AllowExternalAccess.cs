@@ -2,7 +2,7 @@ namespace CustomAccessibility.Attributes;
 
 /// <summary>
 /// This attribute tells the CustomAccessibility.RestrictedAccessAnalyzer that
-///   external projects are not allowed to access the attributed definition 
+///   external projects are allowed to access the attributed definition
 /// </summary>
 [AttributeUsage(
     AttributeTargets.Class
@@ -14,4 +14,4 @@ namespace CustomAccessibility.Attributes;
         | AttributeTargets.Interface,
     AllowMultiple = false
 )]
-public sealed class InternalAccessOnly() : Attribute { }
+public sealed class ExternalAccessAllowed() : Attribute { }

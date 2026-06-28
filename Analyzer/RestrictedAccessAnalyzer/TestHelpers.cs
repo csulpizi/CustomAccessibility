@@ -2,7 +2,7 @@
 using Microsoft.CodeAnalysis;
 using System.Text.RegularExpressions;
 
-namespace CustomAccessibility;
+namespace CustomAccessibility.Analyzer;
 
 partial class RestrictedAccessAnalyzer
 {

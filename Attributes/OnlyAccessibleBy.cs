@@ -27,4 +27,3 @@ public sealed class OnlyAccessibleBy(string name) : Attribute
 {
     public readonly string Name = name;
 }
-

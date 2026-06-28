@@ -7,22 +7,13 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 #endif
 
-namespace CustomAccessibility;
+namespace CustomAccessibility.Analyzer;
 
-[AccessibleByInternalAndExternal]
+[ExternalAccessAllowed]
 static class Util
 {
-    internal static AccessibilityType GetAccessibilityType(ISymbol symbol)
-    {
-        var xs = symbol.GetAttributes();
-        if (xs.Any(x => nameof(InternalAccessOnly) == x.AttributeClass?.Name))
-            return AccessibilityType.InternalAccessOnly;
-        if (xs.Any(x => nameof(ExternalAccessOnly) == x.AttributeClass?.Name))
-            return AccessibilityType.ExternalAccessOnly;
-        if (xs.Any(x => nameof(AccessibleByInternalAndExternal) == x.AttributeClass?.Name))
-            return AccessibilityType.AccessibleByInternalAndExternal;
-        return AccessibilityType.Default;
-    }
+    internal static bool IsExternalAllowed(ISymbol symbol) =>
+        symbol.GetAttributes().Any(x => nameof(ExternalAccessAllowed) == x.AttributeClass?.Name);
 
     internal static bool IsDeclaredInternal(ISymbol symbol)
     {
@@ -67,13 +58,14 @@ static class Util
 
     static Regex CoerceAttributeToRegex(AttributeData attribute)
     {
-        var val =
-            attribute.ConstructorArguments[0].Value ?? throw new Exception("Should never happen");
+        var val = attribute.ConstructorArguments.FirstOrDefault().Value;
+        if (val is null)
+            return new("");
         return CoerceWildCardStringToRegex((string)val);
     }
 
     // Allow external for unit testing
-    [AccessibleByInternalAndExternal]
+    [ExternalAccessAllowed]
     internal static Regex CoerceWildCardStringToRegex(string s)
     {
         s = "^" + s + "$";

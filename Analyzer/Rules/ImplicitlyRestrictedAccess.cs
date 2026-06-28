@@ -1,16 +1,17 @@
 using Microsoft.CodeAnalysis;
 
-namespace CustomAccessibility.Rules;
+namespace CustomAccessibility.Analyzer.Rules;
 
 static class ImplicitlyRestrictedAccess
 {
     internal static readonly DiagnosticDescriptor Rule =
         new(
             "CACC001",
-            "Restricted Access",
+            "Restricted External Access",
             "External access is restricted unless explicitly specified",
             "Usage",
             DiagnosticSeverity.Error,
-            isEnabledByDefault: true
+            isEnabledByDefault: true,
+            helpLinkUri: "https://github.com/csulpizi/CustomAccessibility/Documentation/DiagnosticRules.md#cacc001"
         );
 }

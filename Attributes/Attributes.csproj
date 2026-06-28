@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Authors>Cory Sulpizi</Authors>
+    <Version>1.0.1</Version>
+    <PackageDescription>Attribute definitions for `csulpizi.CustomAccessibility` package.</PackageDescription>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageId>csulpizi.CustomAccessibility.Attributes</PackageId>
+    <PackageProjectUrl>https://github.com/csulpizi/CustomAccessibility</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>12</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>CustomAccessibility.Attributes</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="readme.md" Pack="true" PackagePath="\"/>
+    <None Include="icon.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+
+
+</Project>

@@ -1,9 +1,9 @@
-﻿using CustomAccessibility.Rules;
+﻿using CustomAccessibility.Analyzer.Rules;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 
-namespace CustomAccessibility;
+namespace CustomAccessibility.Analyzer;
 
 partial class RestrictedAccessAnalyzer
 {

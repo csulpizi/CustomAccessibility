@@ -3,7 +3,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 
-namespace CustomAccessibility;
+namespace CustomAccessibility.Analyzer;
 
 partial class AttributeAnalyzer
 {
@@ -14,7 +14,7 @@ partial class AttributeAnalyzer
         {
             var declaredSymbol =
                 ctx.SemanticModel.GetDeclaredSymbol(node)
-                ?? throw new Exception("Should never happen!");
+                ?? throw new Exception("TypeDeclarationSyntax somehow has no DeclaredSymbol");
             isInternalAccessibility = Util.IsDeclaredInternal(declaredSymbol);
         }
         else
@@ -29,27 +29,17 @@ partial class AttributeAnalyzer
         bool isInternalAccessibility
     )
     {
-        int nAccessibilityAttributes = 0;
         foreach (var attribute in attributes)
         {
             var attributeName = attribute.Name.ToString().Split('.').Last();
             if (
-                nameof(Attributes.InternalAccessOnly) == attributeName
-                || nameof(Attributes.ExternalAccessOnly) == attributeName
-                || nameof(Attributes.AccessibleByInternalAndExternal) == attributeName
+                nameof(Attributes.ExternalAccessAllowed) == attributeName
                 || nameof(Attributes.OnlyAccessibleBy) == attributeName
             )
             {
-                if (nameof(Attributes.OnlyAccessibleBy) != attributeName)
-                    nAccessibilityAttributes++;
                 if (!isInternalAccessibility)
                 {
                     ReportCACC100(ctx, attribute);
-                    return;
-                }
-                else if (nAccessibilityAttributes > 1)
-                {
-                    ReportCACC101(ctx, attribute);
                     return;
                 }
                 else

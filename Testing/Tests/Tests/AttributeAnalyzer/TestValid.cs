@@ -2,76 +2,80 @@ using CustomAccessibility.Attributes;
 
 namespace Testing.Tests.AttributeAnalyzer;
 
-[ExternalAccessOnly]
+[ExternalAccessAllowed]
 class AttributedClass { }
 
-[ExternalAccessOnly]
+[ExternalAccessAllowed]
 enum AttributedEnum { }
 
-[ExternalAccessOnly]
+[ExternalAccessAllowed]
 interface IAttributed { }
 
-[ExternalAccessOnly]
+[ExternalAccessAllowed]
 struct AttributedStruct { }
 
-[ExternalAccessOnly]
+[ExternalAccessAllowed]
 [OnlyAccessibleBy("SomeClass")]
 [OnlyAccessibleBy("SomeClass2")]
 class AttributedClass2 { }
 
+[OnlyAccessibleBy("SomeClass")]
+[OnlyAccessibleBy("SomeClass2")]
+class AttributedClass3 { }
+
 class AttributedMembersOfClass
 {
-    [ExternalAccessOnly]
+    [ExternalAccessAllowed]
     internal void Method() { }
 
-    [ExternalAccessOnly]
+    [ExternalAccessAllowed]
     internal int Field = 0;
 
-    [ExternalAccessOnly]
+    [ExternalAccessAllowed]
     internal int Property => 0;
 }
 
 interface IAttributedMembersOfInterface
 {
-    [ExternalAccessOnly]
+    [ExternalAccessAllowed]
     internal void Method();
 
-    [ExternalAccessOnly]
+    [ExternalAccessAllowed]
     internal int Property { get; }
 }
 
 struct AttributedMembersOfStruct()
 {
-    [ExternalAccessOnly]
+    [ExternalAccessAllowed]
     internal void Method() { }
 
-    [ExternalAccessOnly]
+    [ExternalAccessAllowed]
     internal readonly void ReadonlyMethod() { }
 
-    [ExternalAccessOnly]
+    [ExternalAccessAllowed]
     internal static void StaticMethod() { }
 
-    [ExternalAccessOnly]
+    [ExternalAccessAllowed]
     internal int Field = 0;
 
-    [ExternalAccessOnly]
+    [ExternalAccessAllowed]
     internal int Property => 0;
 }
 
 readonly struct AttributedMembersOfReadonlyStruct()
 {
-    [ExternalAccessOnly]
+    [ExternalAccessAllowed]
     internal void Method() { }
 
-    [ExternalAccessOnly]
+    [ExternalAccessAllowed]
     internal readonly void ReadonlyMethod() { }
 
-    [ExternalAccessOnly]
+    [ExternalAccessAllowed]
     internal static void StaticMethod() { }
 
-    [ExternalAccessOnly]
+    [ExternalAccessAllowed]
     internal readonly int Field = 0;
 
-    [ExternalAccessOnly]
+    [ExternalAccessAllowed]
     internal readonly int Property => 0;
 }

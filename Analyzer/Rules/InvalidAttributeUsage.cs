@@ -1,6 +1,6 @@
 using Microsoft.CodeAnalysis;
 
-namespace CustomAccessibility.Rules;
+namespace CustomAccessibility.Analyzer.Rules;
 
 static class InvalidAttributeUsage
 {
@@ -11,6 +11,7 @@ static class InvalidAttributeUsage
             "`CustomAccessibility` attributes can only be applied to declarations with the `internal` access modifier",
             "Usage",
             DiagnosticSeverity.Error,
-            isEnabledByDefault: true
+            isEnabledByDefault: true,
+            helpLinkUri: "https://github.com/csulpizi/CustomAccessibility/Documentation/DiagnosticRules.md#cacc100"
         );
 }

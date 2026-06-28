@@ -16,9 +16,7 @@ Provides type, namespace, and module-specific accessibility constraints to help 
 
 Accessibility is an important part of strongly-typed languages to provide well-defined boundaries and abstractions for individual systems, preventing components from accessing items that are not intended to be exposed. `public`, `internal`, and `private` provide adequate support in most use cases, but are not flexible enough to cover every design pattern. 
 
-A good example is the "Chain-of-Responsibility" design pattern. In this pattern, we expect classes to only interact with their subordinate. A Lieutenant should never issue commands directly to a Soldier.
-
-![Chain of Responsibility](Documentation/ChainOfResponsibility.png)
+A good example is the "Chain-of-Responsibility" design pattern. In this pattern, we expect classes to only interact with their subordinate. We may want the class `Lieutenant` to interface with the class `Sargeant` who in turn interfaces with the class `Soldier`. A `Lieutenant` should never issue commands directly to a `Soldier`.
 
 If we define this same structure in a given project, we would need to make the `Soldier` class and all relevant members `internal` so that the `Sargeant` can access them. But this exposes `Soldier` and its members to every class in the project, not just `Sargeant`, breaking the pattern we are trying to achieve.
 

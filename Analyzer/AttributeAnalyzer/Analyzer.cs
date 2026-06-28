@@ -1,11 +1,11 @@
 using System.Collections.Immutable;
-using CustomAccessibility.Rules;
+using CustomAccessibility.Analyzer.Rules;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 
-namespace CustomAccessibility;
+namespace CustomAccessibility.Analyzer;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public partial class AttributeAnalyzer : DiagnosticAnalyzer
@@ -15,9 +15,9 @@ public partial class AttributeAnalyzer : DiagnosticAnalyzer
         get
         {
 #if TEST
-            return [InvalidAttributeUsage.Rule, MultipleAttributes.Rule, DiagnosticExpected.Rule];
+            return [InvalidAttributeUsage.Rule, DiagnosticExpected.Rule];
 #else
-            return [InvalidAttributeUsage.Rule, MultipleAttributes.Rule];
+            return [InvalidAttributeUsage.Rule];
 #endif
         }
     }

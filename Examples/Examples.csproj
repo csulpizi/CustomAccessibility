@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\CustomAccessibility\CustomAccessibility.csproj" OutputItemType="Analyzer" />
+    <ProjectReference Include="..\Analyzer\Analyzer.csproj" OutputItemType="Analyzer" />
+    <ProjectReference Include="..\Attributes\Attributes.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

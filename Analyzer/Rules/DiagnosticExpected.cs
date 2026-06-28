@@ -1,7 +1,7 @@
 #if TEST
 using Microsoft.CodeAnalysis;
 
-namespace CustomAccessibility.Rules;
+namespace CustomAccessibility.Analyzer.Rules;
 
 static class DiagnosticExpected
 {

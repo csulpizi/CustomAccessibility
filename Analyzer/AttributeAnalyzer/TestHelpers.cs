@@ -1,7 +1,7 @@
 #if TEST
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace CustomAccessibility;
+namespace CustomAccessibility.Analyzer;
 
 partial class AttributeAnalyzer
 {

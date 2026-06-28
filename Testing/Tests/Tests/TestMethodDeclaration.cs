@@ -3,35 +3,35 @@ namespace Testing.Tests;
 class MethodDeclarationClass
 {
     // Testing return type success
-    Definitions.Internal.InternalOnly A() => new();
+    Definitions.Internal.Default A() => new();
 
     // Testing parameter type success
-    void B(Definitions.Internal.InternalOnly x) { }
+    void B(Definitions.Internal.Default x) { }
 
     // CACC000; this class is not allow-listed
-    #region CACC000 InternalOnlyClassSpecified
-    Definitions.Internal.InternalOnlyClassSpecified C() => new();
+    #region CACC000 DefaultClassSpecified
+    Definitions.Internal.DefaultClassSpecified C() => new();
 
-    void D(Definitions.Internal.InternalOnlyClassSpecified x) { }
+    void D(Definitions.Internal.DefaultClassSpecified x) { }
     #endregion
 
     // Testing variable declaration within method
     void E()
     {
         // Explicit unrestricted
-        Definitions.Internal.InternalOnly a = new();
+        Definitions.Internal.Default a = new();
 
         // CACC0000; explicit restricted type
-        #region CACC000 InternalOnlyClassSpecified
-        Definitions.Internal.InternalOnlyClassSpecified b = new();
+        #region CACC000 DefaultClassSpecified
+        Definitions.Internal.DefaultClassSpecified b = new();
         #endregion
 
         // Implicit unrestricted
-        var c = new Definitions.Internal.InternalOnly();
+        var c = new Definitions.Internal.Default();
 
         // CACC0000; implicit restricted type
-        #region CACC000 InternalOnlyClassSpecified,var
-        var dc = new Definitions.Internal.InternalOnlyClassSpecified();
+        #region CACC000 DefaultClassSpecified,var
+        var dc = new Definitions.Internal.DefaultClassSpecified();
         #endregion
     }
 }

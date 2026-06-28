@@ -1,6 +1,6 @@
 using Microsoft.CodeAnalysis;
 
-namespace CustomAccessibility;
+namespace CustomAccessibility.Analyzer;
 
 partial class RestrictedAccessAnalyzer
 {
@@ -22,12 +22,7 @@ partial class RestrictedAccessAnalyzer
             return ValidationResult.NoError;
 
         var isExternalAccess = Util.IsExternalAccess(enclosingType, symbol);
-        var accessibilityType = Util.GetAccessibilityType(symbol);
-
-        if (isExternalAccess && accessibilityType == AccessibilityType.InternalAccessOnly)
-            return ValidationResult.RestrictedAccess;
-        if (!isExternalAccess && accessibilityType == AccessibilityType.ExternalAccessOnly)
-            return ValidationResult.RestrictedAccess;
+        var isExternalAllowed = Util.IsExternalAllowed(symbol);
 
         var classes = Util.GetClassRegexes(symbol);
 
@@ -38,7 +33,7 @@ partial class RestrictedAccessAnalyzer
         )
             return ValidationResult.RestrictedAccess;
 
-        if (isExternalAccess && accessibilityType == AccessibilityType.Default)
+        if (isExternalAccess && !isExternalAllowed)
         {
             return ValidationResult.ImplicitlyRestrictedAccess;
         }

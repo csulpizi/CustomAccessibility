@@ -4,7 +4,7 @@ namespace Testing.Tests;
 
 class TestPrivateAccess
 {
-    [ExternalAccessOnly]
+    [OnlyAccessibleBy("Dog")]
     internal void Foo() { }
 
     void Goo()
@@ -29,8 +29,5 @@ class OuterClassForProtectedAccessTest : TestPrivateAccess
 class SelfAccessTest
 {
     // No issue. Classes are always allowed to reference themselves
-    void Foo(SelfAccessTest x)
-    {
-        
-    }
+    void Foo(SelfAccessTest x) { }
 }

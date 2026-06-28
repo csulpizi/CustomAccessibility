@@ -1,11 +1,11 @@
 ﻿using System.Collections.Immutable;
-using CustomAccessibility.Rules;
+using CustomAccessibility.Analyzer.Rules;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 
-namespace CustomAccessibility;
+namespace CustomAccessibility.Analyzer;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public partial class RestrictedAccessAnalyzer : DiagnosticAnalyzer
@@ -75,7 +75,7 @@ public partial class RestrictedAccessAnalyzer : DiagnosticAnalyzer
         {
             var declaredType =
                 ctx.SemanticModel.GetDeclaredSymbol(typeDeclaration)
-                ?? throw new Exception("Should not happen!");
+                ?? throw new Exception("TypeDeclarationSyntax somehow has no DeclaredSymbol");
             if (ValidateAccessibility(importedType, declaredType) != ValidationResult.NoError)
             {
                 ReportCACC002(ctx, importedType, declaredType, usingNode);
@@ -89,7 +89,8 @@ public partial class RestrictedAccessAnalyzer : DiagnosticAnalyzer
     {
         var node = (TypeDeclarationSyntax)ctx.Node;
         var declaringType =
-            ctx.SemanticModel.GetDeclaredSymbol(node) ?? throw new Exception("Should not happen!");
+            ctx.SemanticModel.GetDeclaredSymbol(node)
+            ?? throw new Exception("TypeDeclarationSyntax somehow has no DeclaredSymbol");
         ValidateAllReferencedTypes(ctx, node, declaringType);
     }
 

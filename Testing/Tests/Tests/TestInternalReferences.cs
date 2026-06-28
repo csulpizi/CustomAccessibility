@@ -6,21 +6,14 @@ class InternalReferencesA
     Definitions.Internal.Default a = new();
     Definitions.Internal.DefaultClassSpecified b = new();
 
-    // AccessibleByInternalAndExternal and InternalAccessOnly both work when "this" class is specified
-    Definitions.Internal.InternalOnlyClassSpecified e = new();
-    Definitions.Internal.BothClassSpecified f = new();
-
-    // AccessibleByInternalAndExternal and InternalAccessOnly both work without issue when class unspecified
-    Definitions.Internal.InternalOnly g = new();
-    Definitions.Internal.Both h = new();
+    // ExternalAccessAllowed and InternalAccessOnly both work without issue when class unspecified
+    Definitions.Internal.ExternalAllowed h = new();
 
     // Wild card with correct ns should work
     Definitions.Internal.WildCard i = new();
 
     // CACC000; external only's cannot be referenced
-    #region CACC000 ExternalOnly,ExternalOnlyClassSpecified,IncorrectWildCard
-    Definitions.Internal.ExternalOnly c = new();
-    Definitions.Internal.ExternalOnlyClassSpecified d = new();
+    #region CACC000 IncorrectWildCard
     Definitions.Internal.IncorrectWildCard j = new();
     #endregion
 }
@@ -29,8 +22,7 @@ class InternalReferencesA
 class InternalReferencesB
 {
     // CACC000; this class is not allow-listed
-    #region CACC000 InternalOnlyClassSpecified,BothClassSpecified,IncorrectWildCard
-    Definitions.Internal.InternalOnlyClassSpecified e = new();
-    Definitions.Internal.BothClassSpecified f = new();
+    #region CACC000 ExternalAllowedClassSpecified
+    Definitions.Internal.ExternalAllowedClassSpecified f = new();
     #endregion
 }

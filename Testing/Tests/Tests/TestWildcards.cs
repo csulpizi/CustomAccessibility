@@ -40,7 +40,7 @@ public class TestWildcards
     )]
     public void TestRegex(string input, string[] samples, bool[] expected)
     {
-        var regex = CustomAccessibility.Util.CoerceWildCardStringToRegex(input);
+        var regex = CustomAccessibility.Analyzer.Util.CoerceWildCardStringToRegex(input);
         Assert.IsGreaterThan(0, samples.Length);
         for (int i = 0; i < samples.Length; i++)
         {

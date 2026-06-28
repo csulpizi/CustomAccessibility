@@ -1,6 +1,6 @@
 using Microsoft.CodeAnalysis;
 
-namespace CustomAccessibility.Rules;
+namespace CustomAccessibility.Analyzer.Rules;
 
 static class RestrictedAccess
 {
@@ -13,6 +13,7 @@ static class RestrictedAccess
             $"Use of {nested} is restricted and cannot be used here",
             "Usage",
             DiagnosticSeverity.Error,
-            isEnabledByDefault: true
+            isEnabledByDefault: true,
+            helpLinkUri: "https://github.com/csulpizi/CustomAccessibility/Documentation/DiagnosticRules.md#cacc000"
         );
 }

@@ -3,6 +3,7 @@
     <Project Path="Testing/ExternalDefinitions/ExternalDefinitions.csproj" />
     <Project Path="Testing/Tests/Tests.csproj" />
   </Folder>
-  <Project Path="CustomAccessibility/CustomAccessibility.csproj" />
+  <Project Path="Analyzer/Analyzer.csproj" />
+  <Project Path="Attributes/Attributes.csproj" />
   <Project Path="Examples/Examples.csproj" />
 </Solution>

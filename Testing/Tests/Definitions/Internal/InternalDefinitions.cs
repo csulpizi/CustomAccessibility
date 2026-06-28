@@ -7,26 +7,12 @@ class Default { }
 [OnlyAccessibleBy("Testing.Tests.InternalReferencesA")]
 class DefaultClassSpecified { }
 
-[InternalAccessOnly]
-class InternalOnly { }
+[ExternalAccessAllowed]
+class ExternalAllowed { }
 
-[InternalAccessOnly]
+[ExternalAccessAllowed]
 [OnlyAccessibleBy("Testing.Tests.InternalReferencesA")]
-class InternalOnlyClassSpecified { }
-
-[ExternalAccessOnly]
-class ExternalOnly { }
-
-[ExternalAccessOnly]
-[OnlyAccessibleBy("Testing.Tests.InternalReferencesA")]
-class ExternalOnlyClassSpecified { }
-
-[AccessibleByInternalAndExternal]
-class Both { }
-
-[AccessibleByInternalAndExternal]
-[OnlyAccessibleBy("Testing.Tests.InternalReferencesA")]
-class BothClassSpecified { }
+class ExternalAllowedClassSpecified { }
 
 [OnlyAccessibleBy("Testing.Tests.**")]
 class WildCard { }

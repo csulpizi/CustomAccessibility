@@ -43,7 +43,7 @@ class ClassWithMultiDefaultConstructor(RestrictedMember x, int y, RestrictedMemb
 #endregion
 
 // Inheritance works for external references
-class DerivedClass0 : Definitions.External.Both { }
+class DerivedClass0 : Definitions.External.ExternalAllowed { }
 
 // Inheritence works; wild card matches ns
 class DerivedClass1 : Definitions.Internal.WildCard { }

@@ -20,7 +20,7 @@ The referenced symbol is not accessible to the type that is attempting to refere
 
 ### Description
 
-Restricted Access
+Restricted External Access
 
 External access is restricted unless explicitly specified
 
@@ -30,7 +30,7 @@ The referenced symbol does not specify that external projects are allowed to acc
 
 ### Fixes
 
-- Mark the original symbol with the `AccessibleByInternalAndExternal` attribute
+- Mark the original symbol with the `ExternalAccessAllowed` attribute; or
 - Suppress `CACC001` to assume external access is allowed by default
 
 See [here](https://github.com/csulpizi/CustomAccessibility#external-access) for more details
@@ -49,6 +49,21 @@ A `using static <some static class>;` statement in the namespace caused this err
 
 ### Fixes
 
-- Remove the `using static` expression and fully qualify any necessary references to it
-- Mark the static class with the `CustomAccessibility.Attributes.OnlyAccessibleBy` attribute to specify that the declared type is allowed to reference it. See [here](https://github.com/csulpizi/CustomAccessibility#onlyaccessibleby) for more details.
+- Remove the `using static` expression and fully qualify any necessary references to it; or
+- Mark the static class with the `CustomAccessibility.Attributes.OnlyAccessibleBy` attribute to specify that the declared type is allowed to reference it. See [here](https://github.com/csulpizi/CustomAccessibility#onlyaccessibleby) for more details; or
 - Use an alias for the `using static` expression instead (e.g., `using SomeAlias = StaticClassYouWantToImport`)
+
+## CACC100
+
+Invalid attribute usage
+
+`CustomAccessibility` attributes can only be applied to declarations with the `internal` access modifier
+
+### Cause
+
+One or more `CustomAccessibility` attributes were attached to a non-`internal` definition.
+
+### Fixes
+
+- Change the accessibility of the definition to `internal`; or
+- Remove the problematic attribute

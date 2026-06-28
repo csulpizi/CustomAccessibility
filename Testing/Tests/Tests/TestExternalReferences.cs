@@ -2,13 +2,11 @@ namespace Testing.Tests;
 
 class ExternalReferencesA
 {
-    // AccessibleByInternalAndExternal and ExternalAccessOnly both work when "this" class is specified
-    readonly Definitions.External.ExternalOnlyClassSpecified e = new();
+    // ExternalAccessAllowed works when "this" class is specified
     readonly Definitions.External.BothClassSpecified f = new();
 
-    // AccessibleByInternalAndExternal and ExternalAccessOnly both work without issue when class unspecified
-    readonly Definitions.External.ExternalOnly g = new();
-    readonly Definitions.External.Both h = new();
+    // ExternalAccessAllowed works without issue when class unspecified
+    readonly Definitions.External.ExternalAllowed h = new();
 
     // Wild card with correct ns should work
     readonly Definitions.External.WildCard i = new();
@@ -23,12 +21,6 @@ class ExternalReferencesA
     readonly Definitions.External.Default a = new();
     readonly Definitions.External.DefaultClassSpecified b = new();
     #endregion
-
-    // CACC000; internal only's cannot be referenced
-    #region CACC000 InternalOnly,InternalOnlyClassSpecified
-    readonly Definitions.External.InternalOnly c = new();
-    readonly Definitions.External.InternalOnlyClassSpecified d = new();
-    #endregion
 }
 
 // Similar to class A, but 'ClassSpecified' attributes do not point to this class
@@ -36,7 +28,6 @@ class ExternalReferencesB
 {
     // CACC000; this class is not allow-listed
     #region CACC000 ExternalOnlyClassSpecified,BothClassSpecified
-    readonly Definitions.External.ExternalOnlyClassSpecified e = new();
     readonly Definitions.External.BothClassSpecified f = new();
     #endregion
 }

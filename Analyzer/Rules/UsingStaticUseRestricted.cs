@@ -1,6 +1,6 @@
 using Microsoft.CodeAnalysis;
 
-namespace CustomAccessibility.Rules;
+namespace CustomAccessibility.Analyzer.Rules;
 
 static class UsingStaticUseRestricted
 {
@@ -16,6 +16,7 @@ static class UsingStaticUseRestricted
             $"Use of {usingClass} is restricted; {declaredClass} is not allowed to access it",
             "Usage",
             DiagnosticSeverity.Error,
-            isEnabledByDefault: true
+            isEnabledByDefault: true,
+            helpLinkUri: "https://github.com/csulpizi/CustomAccessibility/Documentation/DiagnosticRules.md#cacc002"
         );
 }

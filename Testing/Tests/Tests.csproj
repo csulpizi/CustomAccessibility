@@ -1,10 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <ProjectReference Include="..\..\CustomAccessibility\CustomAccessibility.csproj" OutputItemType="Analyzer" />
+    <ProjectReference Include="..\..\Analyzer\Analyzer.csproj" OutputItemType="Analyzer" />
     <ProjectReference Include="..\ExternalDefinitions\ExternalDefinitions.csproj" />
+
     <PackageReference Include="MSTest" Version="4.0.1" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Analyzer.Testing" Version="1.1.4" />
     <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Attributes\Attributes.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

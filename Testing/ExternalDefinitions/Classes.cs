@@ -7,36 +7,22 @@ class Default { }
 [OnlyAccessibleBy("Testing.Tests.ExternalReferencesA")]
 class DefaultClassSpecified { }
 
-[InternalAccessOnly]
-class InternalOnly { }
+[ExternalAccessAllowed]
+class ExternalAllowed { }
 
-[InternalAccessOnly]
-[OnlyAccessibleBy("Testing.Tests.ExternalReferencesA")]
-class InternalOnlyClassSpecified { }
-
-[ExternalAccessOnly]
-class ExternalOnly { }
-
-[ExternalAccessOnly]
-[OnlyAccessibleBy("Testing.Tests.ExternalReferencesA")]
-class ExternalOnlyClassSpecified { }
-
-[AccessibleByInternalAndExternal]
-class Both { }
-
-[AccessibleByInternalAndExternal]
+[ExternalAccessAllowed]
 [OnlyAccessibleBy("Testing.Tests.ExternalReferencesA")]
 class BothClassSpecified { }
 
-[AccessibleByInternalAndExternal]
+[ExternalAccessAllowed]
 [OnlyAccessibleBy("Testing.Tests.ExternalReferences*")]
 class WildCard { }
 
-[AccessibleByInternalAndExternal]
+[ExternalAccessAllowed]
 [OnlyAccessibleBy("Testing.Tests.Shamwow.*")]
 class IncorrectWildCard { }
 
-[AccessibleByInternalAndExternal]
+[ExternalAccessAllowed]
 class ClassWithMembers
 {
     internal void RestrictedFoo() { }
@@ -44,16 +30,15 @@ class ClassWithMembers
     internal int RestrictedField = 0;
     internal int RestrictedProperty => 4;
 
-    [AccessibleByInternalAndExternal]
+    [ExternalAccessAllowed]
     internal void UnrestrictedFoo() { }
 
-    [AccessibleByInternalAndExternal]
+    [ExternalAccessAllowed]
     internal int UnrestrictedField = 0;
 
-    [AccessibleByInternalAndExternal]
+    [ExternalAccessAllowed]
     internal int UnrestrictedProperty => 4;
 }
-
 
 public class ClassForProtectedAccessTests
 {
