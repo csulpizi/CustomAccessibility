@@ -7,7 +7,11 @@ namespace CustomAccessibility.Analyzer;
 
 partial class RestrictedAccessAnalyzer
 {
-    protected virtual void ReportCACC000(SyntaxNodeAnalysisContext ctx, TypeSyntax typeReference, IEnumerable<string> allowlist)
+    protected virtual void ReportCACC000(
+        SyntaxNodeAnalysisContext ctx,
+        TypeSyntax typeReference,
+        IEnumerable<string> allowlist
+    )
     {
 #if TEST
         if (IsDiagnosticExpected(typeReference, typeReference.ToString(), "CACC000"))
@@ -15,7 +19,10 @@ partial class RestrictedAccessAnalyzer
 #endif
         ctx.ReportDiagnostic(
             Diagnostic.Create(
-                RestrictedAccess.Create(typeReference.ToString(), $". Can only be accessed by: [{string.Join(", ", allowlist)}]"),
+                RestrictedAccess.Create(
+                    typeReference.ToString(),
+                    $". Can only be accessed by: [{string.Join(", ", allowlist)}]"
+                ),
                 typeReference.GetLocation()
             )
         );
@@ -46,7 +53,11 @@ partial class RestrictedAccessAnalyzer
 #endif
         ctx.ReportDiagnostic(
             Diagnostic.Create(
-                UsingStaticUseRestricted.Create(importedType.Name, declaredType.Name, $". Can only be accessed by: [{string.Join(", ", allowlist)}]"),
+                UsingStaticUseRestricted.Create(
+                    importedType.Name,
+                    declaredType.Name,
+                    $". Can only be accessed by: [{string.Join(", ", allowlist)}]"
+                ),
                 usingNode.GetLocation()
             )
         );

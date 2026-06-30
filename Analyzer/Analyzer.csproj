@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <Authors>Cory Sulpizi</Authors>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
     <PackageDescription>Provides type, namespace, and module-specific accessibility constraints. Packaged with a code analyzer that enforces those constraints in your IDE and during compilation.</PackageDescription>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <PackageIcon>icon.png</PackageIcon>
@@ -10,6 +9,7 @@
     <PackageProjectUrl>https://github.com/csulpizi/CustomAccessibility</PackageProjectUrl>
     <PackageTags>analyzer,rosalyn,accessibility,attributes,codequality</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReleaseNotes>Downgraded Microsoft.CodeAnalysis.CSharp to v5.0.0 to support older compilers</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -25,11 +25,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="csulpizi.CustomAccessibility.Attributes" Version="1.0.1" IncludeAssets="All" PrivateAssets="None" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.3.0" />
+    <PackageReference
+      Include="csulpizi.CustomAccessibility.Attributes"
+      Version="1.0.1"
+      IncludeAssets="All"
+      PrivateAssets="None"
+    />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.0.0" />
     <None Include="readme.md" Pack="true" PackagePath="\" />
     <None Include="icon.png" Pack="true" PackagePath="\" />
-    <None Include="$(OutputPath)\Analyzer.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="true" />
+    <None
+      Include="$(OutputPath)\Analyzer.dll"
+      Pack="true"
+      PackagePath="analyzers/dotnet/cs"
+      Visible="true"
+    />
   </ItemGroup>
 
   <Target Name="IncludePackageReferences" DependsOnTargets="ResolveReferences">
@@ -38,5 +48,4 @@
       <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'PackageReference')->WithMetadataValue('NuGetPackageId', 'csulpizi.CustomAccessibility.Attributes'))" />
     </ItemGroup>
   </Target>
-
 </Project>

@@ -34,7 +34,7 @@ public class TestWildcards
             "Animals.Birds.Jackdaw",
             "Plants",
             "Oops.Animals",
-            "Oops.Birds.Armadillo"
+            "Oops.Birds.Armadillo",
         },
         new bool[] { false, false, true, true, false, false, true }
     )]

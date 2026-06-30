@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <ItemGroup>
     <ProjectReference Include="..\Analyzer\Analyzer.csproj" OutputItemType="Analyzer" />
     <ProjectReference Include="..\Attributes\Attributes.csproj" />
@@ -11,5 +10,4 @@
     <Nullable>enable</Nullable>
     <RootNamespace>CustomAccessibility.Examples</RootNamespace>
   </PropertyGroup>
-
 </Project>

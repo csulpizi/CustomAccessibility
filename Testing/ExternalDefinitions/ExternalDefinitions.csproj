@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <ItemGroup>
     <ProjectReference Include="..\..\Analyzer\Analyzer.csproj" />
     <ProjectReference Include="..\..\Attributes\Attributes.csproj" />
@@ -13,5 +12,4 @@
     <Version>1</Version>
     <RootNamespace>Testing.Definitions.External</RootNamespace>
   </PropertyGroup>
-
 </Project>

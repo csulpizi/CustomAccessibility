@@ -20,14 +20,14 @@ public partial class RestrictedAccessAnalyzer : DiagnosticAnalyzer
                 RestrictedAccess.Rule,
                 ImplicitlyRestrictedAccess.Rule,
                 UsingStaticUseRestricted.Rule,
-                DiagnosticExpected.Rule
+                DiagnosticExpected.Rule,
             ];
 #else
             return
             [
                 RestrictedAccess.Rule,
                 ImplicitlyRestrictedAccess.Rule,
-                UsingStaticUseRestricted.Rule
+                UsingStaticUseRestricted.Rule,
             ];
 #endif
         }

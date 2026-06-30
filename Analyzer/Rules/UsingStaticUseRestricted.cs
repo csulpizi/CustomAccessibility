@@ -10,7 +10,11 @@ static class UsingStaticUseRestricted
         ""
     );
 
-    internal static DiagnosticDescriptor Create(string usingClass, string declaredClass, string append) =>
+    internal static DiagnosticDescriptor Create(
+        string usingClass,
+        string declaredClass,
+        string append
+    ) =>
         new(
             "CACC002",
             "Restricted 'using static'",

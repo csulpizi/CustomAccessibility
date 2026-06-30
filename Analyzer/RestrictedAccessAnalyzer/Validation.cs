@@ -8,10 +8,13 @@ partial class RestrictedAccessAnalyzer
     {
         NoError,
         RestrictedAccess,
-        ImplicitlyRestrictedAccess
+        ImplicitlyRestrictedAccess,
     }
 
-    static (ValidationResult result, IEnumerable<string> allowlist) ValidateAccessibility(ISymbol? symbol, INamedTypeSymbol enclosingType)
+    static (ValidationResult result, IEnumerable<string> allowlist) ValidateAccessibility(
+        ISymbol? symbol,
+        INamedTypeSymbol enclosingType
+    )
     {
         // We only need to check non-null symbols with 'Internal' accessibility
         if (symbol is null || !Util.IsDeclaredInternal(symbol))

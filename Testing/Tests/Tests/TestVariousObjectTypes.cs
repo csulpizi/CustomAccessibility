@@ -9,13 +9,13 @@ class RestrictedClass { }
 
 enum UnrestrictedEnum
 {
-    Default
+    Default,
 }
 
 [OnlyAccessibleBy(nameof(VariousObjectReferencesA))]
 enum RestrictedEnum
 {
-    Default
+    Default,
 }
 
 interface IUnrestrictedInterface { }
